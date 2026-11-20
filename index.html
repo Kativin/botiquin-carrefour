@@ -20,6 +20,7 @@ body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);c
 .tile .ic{width:72px;height:72px;margin:0 auto 14px;border-radius:20px;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;display:flex;align-items:center;justify-content:center}
 .tile .ic svg{width:38px;height:38px}
 .tile b{display:block;font-size:16px}.tile small{color:var(--mut);font-size:12.5px}
+.tile{position:relative}.tile .ver{position:absolute;top:10px;right:12px;background:#eef3ff;color:#1e40af;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
 .tile.off{opacity:.45;cursor:default}.tile.off:hover{transform:none;box-shadow:none;border-color:var(--bd)}
 .tile.off .ic{background:#cbd3e3}
 header{background:linear-gradient(120deg,#1e3a8a,#2563eb);color:#fff;padding:18px 28px;display:flex;align-items:center;gap:14px}
@@ -102,13 +103,15 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 .pc .pf{grid-area:f;padding:0 7px 3px;font:600 8px Consolas,monospace;color:#3b4560}
 .pc .pf .bcw{width:30mm;margin-top:1px}
 .pc .bc{width:100%;height:5mm;display:block}.pc .bc rect{fill:#000}
-.pc.oc{grid-template-columns:1.2fr 1fr auto;grid-template-areas:"t t t" "l r c" "f r c"}
-.pc .chks{grid-area:c;display:flex;flex-direction:column;justify-content:center;gap:2.5mm;padding:2px 7px 2px 4px;border-left:1px dashed #d8deea}
-.pc .chk2{display:flex;align-items:center;justify-content:flex-end;gap:4px;font-size:7.5px;font-weight:600;color:#3b4560}
-.pc .chk2 i{display:block;width:17mm;height:10mm;border:1.2px solid #6b7488;border-radius:3px}
+.pc.oc{grid-template-columns:minmax(28mm,1.1fr) 1.15fr auto;grid-template-areas:"t t t" "l r c" "f r c";height:33mm}
+.pc .chks{grid-area:c;display:flex;flex-direction:column;justify-content:center;gap:1mm;padding:1px 5px;border-left:1px dashed #d8deea}
+.pc .chk2{display:flex;flex-direction:column;align-items:center;gap:0;font-size:7px;font-weight:600;color:#3b4560;line-height:1.1}
+.pc .chk2 i{display:block;width:16mm;height:9mm;border:1.2px solid #6b7488;border-radius:3px}
 .pc .chk2.ctl{font-weight:900;color:#000}.pc .chk2.ctl i{border:2.6px solid #000}
 .pc.zero .ptit{background:#fde4e4;color:#8b1414;border-bottom-color:#dc2626}.pc.zero{border-color:#f0b4b4}
-.pc.oc .pf{white-space:nowrap;font-size:7.5px;overflow:hidden}.pc.oc .pf .bcw{width:25mm}.pc.oc .bc{height:4.2mm}.pc.oc .pr{justify-content:center}.pc.oc .pr img{flex:0 1 auto;max-height:21mm}.pc.oc .stk{margin-top:2px;text-align:center}
+.pc.oc .pf{white-space:nowrap;font-size:7.5px;overflow:hidden}.pc.oc .pf .bcw{width:24mm}.pc.oc .bc{height:4.2mm}.pc.oc .pr{justify-content:center}.pc.oc .pr img{flex:0 1 auto;max-height:22mm}
+.pc.oc .u.nou{white-space:normal}
+#printArea .cards.oc7{gap:2mm 3mm}.pc.oc .stk{margin-top:2px;text-align:center}
 .pc .bcn{font:600 7.5px Consolas,monospace;letter-spacing:1.5px;text-align:center}
 
 @media print{
@@ -137,9 +140,9 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 </header>
 <section id="menu">
  <div class="grid">
-  <div class="tile" data-go="dif"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
-  <div class="tile" data-go="bus"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
-  <div class="tile" data-go="out"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
+  <div class="tile" data-go="dif"><span class="ver">v1.3</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
+  <div class="tile" data-go="bus"><span class="ver">v2.6</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
+  <div class="tile" data-go="out"><span class="ver">v1.4</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
   <div class="tile off"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 5v14M5 12h14"/></svg></div><b>Próximamente</b><small>Nuevo apartado</small></div>
  </div>
 </section>
@@ -933,7 +936,7 @@ $('oprinti').onclick=async()=>{
    <div class="pf">${n} &nbsp;·&nbsp; ${r.sec} / ${r.secc}<div class="bcw">${window.BOT.ean13svg(r.ean)}</div></div></div>`};
  const pages=[];for(let i=0;i<v.length;i+=14)pages.push(v.slice(i,i+14));
  $('pgsz').textContent='@media print{@page{size:A4 portrait;margin:8mm}}';
- $('printArea').innerHTML=`<h2 class="ch">Listado Outlet · ${$('ocen').value||'Todos los centros'}${$('osec').value?' · '+$('osec').value:''}${$('osecc').value?' · '+$('osecc').value:''} · ${new Date().toLocaleString('es-ES')}</h2>`+pages.map(p=>'<div class="cards">'+p.map(card).join('')+'</div>').join('');
+ $('printArea').innerHTML=`<h2 class="ch">Listado Outlet · ${$('ocen').value||'Todos los centros'}${$('osec').value?' · '+$('osec').value:''}${$('osecc').value?' · '+$('osecc').value:''} · ${new Date().toLocaleString('es-ES')}</h2>`+pages.map(p=>'<div class="cards oc7">'+p.map(card).join('')+'</div>').join('');
  const imgs=[...$('printArea').querySelectorAll('img')];
  await Promise.race([Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r}))),new Promise(r=>setTimeout(r,10000))]);
  window.print();
