@@ -102,6 +102,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 .pc .pf{grid-area:f;padding:0 7px 3px;font:600 8px Consolas,monospace;color:#3b4560}
 .pc .pf .bcw{width:30mm;margin-top:1px}
 .pc .bc{width:100%;height:5mm;display:block}.pc .bc rect{fill:#000}
+.pc .chk2{display:flex;align-items:flex-end;gap:4px;width:100%;font-size:7.5px;font-weight:700;color:#3b4560;margin-top:2px}.pc .chk2 i{flex:1;border-bottom:1px solid #6b7488;height:9px}
 .pc .bcn{font:600 7.5px Consolas,monospace;letter-spacing:1.5px;text-align:center}
 
 @media print{
@@ -232,7 +233,8 @@ tr.nf td{color:var(--mut);background:#fff7f7}
    <label class="f" style="flex-direction:row;align-items:center;gap:6px"><input type="checkbox" id="ostk"> Solo con stock</label>
    <span class="msg" id="ocnt"></span>
    <button class="btn sec" id="oback">📂 Cargar archivos</button>
-   <button class="btn" id="oprint">🖨 Imprimir / PDF</button>
+   <button class="btn sec" id="oprint">🖨 Imprimir / PDF</button>
+   <button class="btn" id="oprinti">🖼 Reporte con imágenes</button>
   </div>
   <div class="tw"><table><thead id="oth"></thead><tbody id="otb"></tbody></table></div>
  </section>
@@ -743,17 +745,25 @@ function renderB(){const t=tableHTML(true);$('bth').innerHTML=t.th;$('btb').inne
  const nf=result.filter(r=>r.nf).length;$('bcnt').textContent=result.length+' códigos · '+(result.length-nf)+' encontrados'+(nf?' · '+nf+' no encontrados':'')}
 
 /* ---- fotos: primero carpeta Foto, si no, web y se guarda copia ---- */
-async function loadPhotos(){
- let foto=null;if(dir){try{foto=await dir.getDirectoryHandle('Foto',{create:true})}catch(x){}}
- for(const r of result){if(r.nf)continue;const n=photoN(r.id);if(!n||photoCache[n])continue;
-  let blob=null;
-  if(foto){try{blob=await (await foto.getFileHandle(n+'.jpg')).getFile()}catch(x){}}
-  if(!blob){try{const resp=await fetch(photoURL(n));if(resp.ok){blob=await resp.blob();
-     if(foto){const w=await (await foto.getFileHandle(n+'.jpg',{create:true})).createWritable();await w.write(blob);await w.close()}}}catch(x){/* la web no permite descargarla: se muestra directamente */}}
-  if(blob){photoCache[n]=URL.createObjectURL(blob);document.querySelectorAll(`img.bimg[data-n="${n}"]`).forEach(i=>i.src=photoCache[n])}
- }
+/* Foto: primero carpeta Foto (junto al HTML); si no está, se descarga de la web y se guarda como Foto/<n>.jpg */
+async function fotoDir(){
+ if(!dir&&fsOK){try{const h=await kv('dir');if(h&&await h.queryPermission({mode:'readwrite'})==='granted')await useDir(h)}catch(x){}}
+ if(!dir)return null;try{return await dir.getDirectoryHandle('Foto',{create:true})}catch(x){return null}
 }
-
+async function photoFor(n,foto){
+ if(!n)return '';if(photoCache[n])return photoCache[n];
+ let blob=null;
+ if(foto){try{blob=await (await foto.getFileHandle(n+'.jpg')).getFile()}catch(x){}}
+ if(!blob){try{const resp=await fetch(photoURL(n));if(resp.ok){blob=await resp.blob();
+   if(foto){try{const w=await (await foto.getFileHandle(n+'.jpg',{create:true})).createWritable();await w.write(blob);await w.close()}catch(x){}}}}catch(x){/* la web no deja descargarla: se muestra directamente */}}
+ if(blob)photoCache[n]=URL.createObjectURL(blob);
+ return photoCache[n]||photoURL(n);
+}
+async function photosFor(ns,onEach){const foto=await fotoDir();const q=[...new Set(ns.filter(Boolean))];
+ await Promise.all(Array.from({length:6},async()=>{while(q.length){const n=q.shift();const u=await photoFor(n,foto);onEach&&onEach(n,u)}}))}
+async function loadPhotos(){
+ await photosFor(result.filter(r=>!r.nf).map(r=>photoN(r.id)),(n,u)=>document.querySelectorAll(`img.bimg[data-n="${n}"]`).forEach(i=>{if(i.src!==u)i.src=u}));
+}
 /* ---- reporte para imprimir / guardar en PDF ---- */
 /* ---- código de barras EAN-13 en SVG ---- */
 function ean13svg(code){
@@ -805,6 +815,7 @@ async function printRep(withImg){
  await Promise.race([Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r}))),new Promise(r=>setTimeout(r,8000))]);
  window.print();
 }
+window.BOT={photosFor,photoCache,photoURL,ean13svg,id10:id=>id?String(id).slice(-10).padStart(10,'0'):''};
 $('bprint').onclick=()=>printRep(false);
 $('bprinti').onclick=()=>printRep(true);
 })();
@@ -902,6 +913,25 @@ $('oprint').onclick=()=>{const v=view();
  $('pgsz').textContent='@media print{@page{size:A4 landscape;margin:8mm}}';
  $('printArea').innerHTML=`<h2>Listado Outlet · ${$('ocen').value||'Todos los centros'}${$('osec').value?' · '+$('osec').value:''}${$('osecc').value?' · '+$('osecc').value:''} · ${new Date().toLocaleString('es-ES')}</h2><table><thead><tr>${OC.map(c=>`<th>${c[1]}</th>`).join('')}</tr></thead><tbody>${rowsHTML(v)}</tbody></table>`;
  window.print()};
+$('oprinti').onclick=async()=>{
+ const v=view().filter(r=>!r.nf||true);if(!v.length)return;
+ const btn=$('oprinti'),t0=btn.textContent;btn.disabled=true;btn.textContent='Preparando fotos…';
+ const pc={};await window.BOT.photosFor(v.map(r=>String(r.id).replace(/\D/g,'')),(n,u)=>pc[n]=u);
+ btn.disabled=false;btn.textContent=t0;
+ const card=r=>{const n=String(r.id).replace(/\D/g,'');
+  const ub=r.nf?'<div class="u nou">No está en el surtido</div>':r.ubi?r.ubi.split('\n').slice(0,5).map(u=>`<div class="u">${u}</div>`).join(''):'<div class="u nou">Art. no ubicado</div>';
+  return `<div class="pc oc"><div class="ptit">${r.des}</div><div class="pl">${ub}</div>
+   <div class="pr"><img src="${pc[n]||window.BOT.photoURL(n)}" onerror="this.style.visibility='hidden'">
+    <div class="stk">Stock: <b>${r.stk===''?'-':r.stk}</b>${+r.stknd?` <span class="nd">ND ${r.stknd}</span>`:''}</div>
+    <div class="chk2"><span>Preparado</span><i></i></div><div class="chk2"><span>Controlado</span><i></i></div></div>
+   <div class="pf">${n} &nbsp;·&nbsp; ${r.sec} / ${r.secc}<div class="bcw">${window.BOT.ean13svg(r.ean)}</div></div></div>`};
+ const pages=[];for(let i=0;i<v.length;i+=14)pages.push(v.slice(i,i+14));
+ $('pgsz').textContent='@media print{@page{size:A4 portrait;margin:8mm}}';
+ $('printArea').innerHTML=`<h2 class="ch">Listado Outlet · ${$('ocen').value||'Todos los centros'}${$('osec').value?' · '+$('osec').value:''}${$('osecc').value?' · '+$('osecc').value:''} · ${new Date().toLocaleString('es-ES')}</h2>`+pages.map(p=>'<div class="cards">'+p.map(card).join('')+'</div>').join('');
+ const imgs=[...$('printArea').querySelectorAll('img')];
+ await Promise.race([Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r}))),new Promise(r=>setTimeout(r,10000))]);
+ window.print();
+};
 })();
 </script>
 </body>
