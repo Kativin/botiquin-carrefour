@@ -102,9 +102,13 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 .pc .pf{grid-area:f;padding:0 7px 3px;font:600 8px Consolas,monospace;color:#3b4560}
 .pc .pf .bcw{width:30mm;margin-top:1px}
 .pc .bc{width:100%;height:5mm;display:block}.pc .bc rect{fill:#000}
-.pc .chks{display:flex;gap:5px;margin-top:2px}.pc .chk2{display:flex;flex-direction:column;align-items:center;font-size:7px;font-weight:700;color:#3b4560}.pc .chk2 i{display:block;width:14mm;height:7.5mm;border:1.3px solid #3b4560;border-radius:3px;margin-top:1px}
+.pc.oc{grid-template-columns:1.2fr 1fr auto;grid-template-areas:"t t t" "l r c" "f r c"}
+.pc .chks{grid-area:c;display:flex;flex-direction:column;justify-content:center;gap:2.5mm;padding:2px 7px 2px 4px;border-left:1px dashed #d8deea}
+.pc .chk2{display:flex;align-items:center;justify-content:flex-end;gap:4px;font-size:7.5px;font-weight:600;color:#3b4560}
+.pc .chk2 i{display:block;width:17mm;height:10mm;border:1.2px solid #6b7488;border-radius:3px}
+.pc .chk2.ctl{font-weight:900;color:#000}.pc .chk2.ctl i{border:2.6px solid #000}
 .pc.zero .ptit{background:#fde4e4;color:#8b1414;border-bottom-color:#dc2626}.pc.zero{border-color:#f0b4b4}
-.pc.oc .pf .bcw{width:25mm}.pc.oc .bc{height:4.2mm}.pc.oc .pr img{max-height:13mm}
+.pc.oc .pf{white-space:nowrap;font-size:7.5px;overflow:hidden}.pc.oc .pf .bcw{width:25mm}.pc.oc .bc{height:4.2mm}.pc.oc .pr{justify-content:center}.pc.oc .pr img{flex:0 1 auto;max-height:21mm}.pc.oc .stk{margin-top:2px;text-align:center}
 .pc .bcn{font:600 7.5px Consolas,monospace;letter-spacing:1.5px;text-align:center}
 
 @media print{
@@ -924,8 +928,8 @@ $('oprinti').onclick=async()=>{
   const ub=r.nf?'<div class="u nou">No está en el surtido</div>':r.ubi?r.ubi.split('\n').slice(0,5).map(u=>`<div class="u">${u}</div>`).join(''):'<div class="u nou">Art. no ubicado</div>';
   return `<div class="pc oc${r.stk!==''&&+r.stk===0?' zero':''}"><div class="ptit">${r.des}</div><div class="pl">${ub}</div>
    <div class="pr"><img src="${pc[n]||window.BOT.photoURL(n)}" onerror="this.style.visibility='hidden'">
-    <div class="stk">Stock: <b>${r.stk===''?'-':r.stk}</b>${+r.stknd?` <span class="nd">ND ${r.stknd}</span>`:''}</div>
-    <div class="chks"><div class="chk2"><span>Preparado</span><i></i></div><div class="chk2"><span>Controlado</span><i></i></div></div></div>
+    <div class="stk">Stock: <b>${r.stk===''?'-':r.stk}</b>${+r.stknd?` <span class="nd">ND ${r.stknd}</span>`:''}</div></div>
+   <div class="chks"><div class="chk2"><span>Preparado</span><i></i></div><div class="chk2 ctl"><span>Controlado</span><i></i></div></div>
    <div class="pf">${n} &nbsp;·&nbsp; ${r.sec} / ${r.secc}<div class="bcw">${window.BOT.ean13svg(r.ean)}</div></div></div>`};
  const pages=[];for(let i=0;i<v.length;i+=14)pages.push(v.slice(i,i+14));
  $('pgsz').textContent='@media print{@page{size:A4 portrait;margin:8mm}}';
