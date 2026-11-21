@@ -179,7 +179,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
   <div class="tile" data-go="dif"><span class="ver">v1.4<span class="pop"><b>Novedades v1.4</b><i>Solo es obligatorio el documento 1</i><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
   <div class="tile" data-go="bus"><span class="ver">v2.8<span class="pop"><b>Novedades v2.8</b><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
   <div class="tile" data-go="out"><span class="ver">v1.8<span class="pop"><b>Novedades v1.8</b><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
-  <div class="tile" data-go="map"><span class="ver">v2.0<span class="pop"><b>Novedades v2.0</b><i>Lee la ubicación escrita encima del QR</i><i>Generar reporte vacía la lista y lo guarda online</i><i>Reportes online en el ordenador: marcar Hecho e imprimir</i><i>Quitado leer de una foto</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3"/></svg></div><b>Reporte Mapeo</b><small>Captura QR de ubicaciones y reporte para chequear</small></div>
+  <div class="tile" data-go="map"><span class="ver">v2.1<span class="pop"><b>Novedades v2.1</b><i>Quitada la ubicación y la lectura del texto</i><i>Generar reporte vacía la lista y lo guarda (online si está configurado)</i><i>Reportes en el ordenador: marcar Hecho e imprimir</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3"/></svg></div><b>Reporte Mapeo</b><small>Captura QR de ubicaciones y reporte para chequear</small></div>
  </div>
 </section>
 <main id="app-dif" style="display:none">
@@ -287,8 +287,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
    <div id="mcamw" class="hidden" style="position:relative;border-radius:12px;overflow:hidden;background:#000;margin-bottom:10px">
     <video id="mvid" playsinline muted style="width:100%;display:block;max-height:380px;object-fit:cover"></video>
     <div style="position:absolute;inset:8% 22% 14%;border:3px solid #22c55e;border-radius:14px;box-shadow:0 0 0 2000px rgba(0,0,0,.25)"></div>
-    <div style="position:absolute;left:0;right:0;bottom:6px;text-align:center;color:#fff;font-size:12px;text-shadow:0 1px 2px #000">Encuadra la etiqueta entera: texto de ubicación + QR</div>
-    <div id="mflash" style="position:absolute;inset:0;background:#22c55e;opacity:0;transition:opacity .3s;pointer-events:none"></div>
+        <div id="mflash" style="position:absolute;inset:0;background:#22c55e;opacity:0;transition:opacity .3s;pointer-events:none"></div>
    </div>
    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="mcam">📷 Abrir cámara</button></div>
    <div class="f" style="margin-top:12px">O escribe el código a mano
@@ -306,7 +305,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
   </div>
  </div>
  <div class="filters"><b style="font-size:14px">QR capturados</b><span class="msg" id="mcnt"></span></div>
- <div class="tw"><table><thead><tr><th>#</th><th>Código QR</th><th>Ubicación</th><th>Capturado</th><th></th></tr></thead><tbody id="mtb"></tbody></table></div>
+ <div class="tw"><table><thead><tr><th>#</th><th>Código QR</th><th>Capturado</th><th></th></tr></thead><tbody id="mtb"></tbody></table></div>
  <div class="filters" style="margin-top:18px"><b style="font-size:14px">📚 Reportes generados</b><span class="msg" id="mhinfo">Ordenados por fecha</span>
   <button class="btn sec" id="mref">🔄 Actualizar</button></div>
  <div class="tw"><table><thead><tr><th>Fecha</th><th>Tarea</th><th>QR</th><th>Hechos</th><th>Estado</th><th></th></tr></thead><tbody id="mhb"></tbody></table></div>
@@ -314,7 +313,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
  <section id="mview" class="hidden">
   <div class="filters"><button class="btn sec" id="mback">← Volver</button><b id="mvt" style="font-size:15px"></b><span class="msg" id="mvc"></span>
    <button class="btn" id="mvprint">🖨 Imprimir</button></div>
-  <div class="tw"><table><thead><tr><th>#</th><th>Hecho</th><th>Ubicación</th><th>Código QR</th></tr></thead><tbody id="mvb"></tbody></table></div>
+  <div class="tw"><table><thead><tr><th>#</th><th>Hecho</th><th>Código QR</th></tr></thead><tbody id="mvb"></tbody></table></div>
  </section>
 </main>
 <div id="printArea"></div>
@@ -1019,17 +1018,15 @@ const fmtD=t=>new Date(t).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',
 const shortC=c=>String(c).replace(/^0+(?=\d{6})/,'');
 function render(){
  $('mtb').innerHTML=L.map((e,i)=>`<tr><td class="rn">${i+1}</td><td style="font-family:Consolas,monospace;font-weight:600">${esc(shortC(e.code))}</td>
-  <td><input data-i="${i}" class="mlbl" value="${esc(e.label||'')}" placeholder="${e.ocr?'Leyendo…':'SV 3L26 M04 B02'}" style="width:100%;min-width:140px;padding:5px 7px;border:1px solid var(--bd);border-radius:6px;font-family:Consolas,monospace;font-weight:600"></td>
-  <td style="color:var(--mut)">${fmtT(e.t)}</td><td><button class="btn sec" data-d="${i}" style="padding:4px 9px">✕</button></td></tr>`).join('')||'<tr><td colspan="5" style="color:var(--mut);text-align:center;padding:20px">Todavía no hay QR capturados</td></tr>';
+  <td style="color:var(--mut)">${fmtT(e.t)}</td><td><button class="btn sec" data-d="${i}" style="padding:4px 9px">✕</button></td></tr>`).join('')||'<tr><td colspan="4" style="color:var(--mut);text-align:center;padding:20px">Todavía no hay QR capturados</td></tr>';
  $('mcnt').textContent=L.length+' QR';
- $('mtb').querySelectorAll('.mlbl').forEach(x=>x.oninput=()=>{L[x.dataset.i].label=x.value;save()});
  $('mtb').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{L.splice(+b.dataset.d,1);save();render()});
 }
 const msg=(t,ok)=>{$('mmsg').innerHTML=t;$('mmsg').style.color=ok===false?'var(--red)':ok?'var(--grn)':'var(--mut)'};
-function add(code,label){
+function add(code){
  code=String(code||'').trim();if(!code)return null;
  if(L.some(e=>e.code===code)){msg('⚠ El QR <b>'+esc(shortC(code))+'</b> ya estaba en la lista',false);return null}
- const e={code,label:label||'',t:Date.now()};L.push(e);save();render();
+ const e={code,t:Date.now()};L.push(e);save();render();
  msg('✔ Añadido <b>'+esc(shortC(code))+'</b> ('+L.length+' en total)',true);
  try{navigator.vibrate&&navigator.vibrate(80)}catch(x){}
  try{const a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator();o.frequency.value=1200;o.connect(a.destination);o.start();o.stop(a.currentTime+.08)}catch(x){}
@@ -1044,10 +1041,8 @@ $('mclear').onclick=()=>{if(!L.length)return;if($('mclear').dataset.c){L=[];save
 /* ---- carga de librerías bajo demanda ---- */
 const loadJS=(urls)=>new Promise((res,rej)=>{const t=i=>{if(i>=urls.length)return rej(new Error('No se pudo cargar '+urls[0].split('/').slice(-1)[0]));
  const s=document.createElement('script');s.src=urls[i];s.onload=res;s.onerror=()=>t(i+1);document.head.appendChild(s)};t(0)});
-let jsqrP=null,tessP=null,ocrW=null;
+let jsqrP=null;
 const loadJsQR=()=>jsqrP||(jsqrP=window.jsQR?Promise.resolve():loadJS(['https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js','https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js']));
-const getOCR=()=>tessP||(tessP=(async()=>{await loadJS(['https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js','https://unpkg.com/tesseract.js@5/dist/tesseract.min.js']);
- ocrW=await Tesseract.createWorker('eng');await ocrW.setParameters({tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ',tessedit_pageseg_mode:'6'});return ocrW})());
 
 /* ---- lector QR: BarcodeDetector del navegador o jsQR; devuelve código y recuadro ---- */
 let bd=null;try{if('BarcodeDetector' in window)bd=new BarcodeDetector({formats:['qr_code']})}catch(x){bd=null}
@@ -1059,32 +1054,16 @@ async function decode(src,w,h){
  const p=r.location,xs=[p.topLeftCorner.x,p.topRightCorner.x,p.bottomLeftCorner.x,p.bottomRightCorner.x],ys=[p.topLeftCorner.y,p.topRightCorner.y,p.bottomLeftCorner.y,p.bottomRightCorner.y];
  const x0=Math.min(...xs)/sc,y0=Math.min(...ys)/sc;return {code:r.data,box:{x:x0,y:y0,w:(Math.max(...xs)/sc)-x0,h:(Math.max(...ys)/sc)-y0}};
 }
-/* ---- OCR del texto de ubicación que hay encima del QR ---- */
-const fixLoc=t=>{const tk=t.toUpperCase().replace(/[^A-Z0-9\n ]/g,' ').split(/\s+/).filter(Boolean);
- return tk.map((x,i)=>{if(i===0)return x.replace(/0/g,'O');
-  x=x.replace(/^([A-Z])([0-9OIL]+)$/,(m,a,b)=>a+b.replace(/O/g,'0').replace(/[IL]/g,'1')); // M04, B02
-  x=x.replace(/^(\d)[1IL|](\d{2})$/,'$1L$2'); // 3L26: la L se suele leer como 1
-  return x}).join(' ')};
-async function readLabel(video,box,entry){
- try{const W=video.videoWidth,H=video.videoHeight;
-  const x=Math.max(0,box.x-box.w*.25),w=Math.min(W-x,box.w*1.5),h=Math.min(box.y,box.h*1.8),y=Math.max(0,box.y-h);
-  if(h<20)return;const c=document.createElement('canvas');c.width=w*2;c.height=h*2;const g=c.getContext('2d');
-  g.filter='grayscale(1) contrast(1.6)';g.drawImage(video,x,y,w,h,0,0,c.width,c.height);
-  entry.ocr=1;render();const W2=await getOCR();const r=await W2.recognize(c);
-  const t=fixLoc(r.data.text);if(t&&!entry.label)entry.label=t;
- }catch(x){msg('⚠ No se pudo leer la ubicación: '+x.message+' (puedes escribirla)',false)}
- delete entry.ocr;save();render();
-}
 let stream=null,last='',lastT=0;
 async function loop(){const v=$('mvid');if(!stream)return;
  if(v.readyState>=2){try{const r=await decode(v,v.videoWidth,v.videoHeight);
-  if(r&&r.code&&(r.code!==last||Date.now()-lastT>3000)){last=r.code;lastT=Date.now();const e=add(r.code);if(e)readLabel(v,r.box,e)}}catch(x){msg('⚠ '+x.message,false)}}
+  if(r&&r.code&&(r.code!==last||Date.now()-lastT>3000)){last=r.code;lastT=Date.now();add(r.code)}}catch(x){msg('⚠ '+x.message,false)}}
  setTimeout(loop,180)}
 async function stopCam(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}$('mcamw').classList.add('hidden');$('mcam').textContent='📷 Abrir cámara'}
 $('mcam').onclick=async()=>{if(stream)return stopCam();
  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}},audio:false});
   const v=$('mvid');v.srcObject=stream;await v.play();$('mcamw').classList.remove('hidden');$('mcam').textContent='⏹ Cerrar cámara';
-  msg('Apunta a la etiqueta: el QR se añade solo y se lee la ubicación de encima');if(!bd)loadJsQR().catch(e=>msg('⚠ '+e.message,false));getOCR().catch(()=>{});loop();
+  msg('Apunta al QR: se añade solo al leerlo');if(!bd)loadJsQR().catch(e=>msg('⚠ '+e.message,false));loop();
  }catch(x){stream=null;msg('⚠ No se pudo abrir la cámara: '+x.message,false)}};
 document.getElementById('home').addEventListener('click',stopCam);
 
@@ -1107,7 +1086,7 @@ async function saveRep(r){
 }
 $('mref').onclick=loadH;
 $('mgen').onclick=async()=>{if(!L.length){msg('No hay QR capturados',false);return}
- const r={id:Date.now(),date:Date.now(),task:$('mtask').value.trim(),items:L.map(e=>({code:e.code,label:e.label||'',done:false})),printed:0};
+ const r={id:Date.now(),date:Date.now(),task:$('mtask').value.trim(),items:L.map(e=>({code:e.code,done:false})),printed:0};
  $('mgen').disabled=true;$('mgen').textContent='Guardando…';
  try{await saveRep(r);L=[];$('mtask').value='';save();render();renderH();msg('✔ Reporte generado'+(SRV()?' y disponible en el ordenador':'')+'. Lista lista para un reporte nuevo',true)}
  catch(x){msg('⚠ No se pudo guardar el reporte: '+x.message+'. La lista no se ha vaciado',false)}
@@ -1127,7 +1106,7 @@ $('mback').onclick=()=>{cur=null;$('mview').classList.add('hidden');$('mcap').cl
 function renderV(){const r=cur,d=r.items.filter(i=>i.done).length;
  $('mvt').textContent=fmtD(r.date)+(r.task?' · '+r.task:'');$('mvc').innerHTML=d+' de '+r.items.length+' hechos'+(r.printed?' · <span class="okp">✔ Impreso</span>':'');
  $('mvb').innerHTML=r.items.map((it,i)=>`<tr style="${it.done?'background:#f0fdf4':''}"><td class="rn">${i+1}</td><td><input type="checkbox" data-i="${i}" ${it.done?'checked':''} style="width:22px;height:22px;cursor:pointer"></td>
-  <td style="font-family:Consolas,monospace;font-weight:700;font-size:14px">${esc(it.label||'—')}</td><td style="font-family:Consolas,monospace">${esc(shortC(it.code))}</td></tr>`).join('');
+  <td style="font-family:Consolas,monospace;font-weight:700;font-size:14px">${esc(shortC(it.code))}</td></tr>`).join('');
  $('mvb').querySelectorAll('input').forEach(c=>c.onchange=async()=>{cur.items[c.dataset.i].done=c.checked;renderV();try{await saveRep(cur)}catch(x){$('mvc').textContent='⚠ No se pudo guardar: '+x.message}});
 }
 let qrlibP=null;
@@ -1139,8 +1118,8 @@ $('mvprint').onclick=async()=>{const r=cur;if(!r)return;
  try{await loadQRlib()}catch(x){$('mvc').textContent='⚠ '+x.message+': se imprime sin QR'}
  $('pgsz').textContent='@media print{@page{size:A4 portrait;margin:10mm}}';
  $('printArea').innerHTML=`<div class="mhead"><div><b>Reporte Mapeo</b>${r.task?' · '+esc(r.task):''}</div><span>${fmtD(r.date)} · ${r.items.length} ubicaciones</span></div>
- <table class="mtab"><thead><tr><th style="width:8mm">#</th><th style="width:24mm">QR</th><th>Ubicación</th><th style="width:36mm">Código</th><th style="width:16mm">Hecho</th><th style="width:48mm">Observaciones</th></tr></thead><tbody>
- ${r.items.map((it,i)=>`<tr><td>${i+1}</td><td>${window.qrcode?qrSVG(it.code):''}</td><td class="ml">${esc(it.label||'')}</td><td class="mc">${esc(shortC(it.code))}<small>${esc(it.code)}</small></td><td><i class="mbox${it.done?' on':''}"></i></td><td></td></tr>`).join('')}
+ <table class="mtab"><thead><tr><th style="width:8mm">#</th><th style="width:24mm">QR</th><th style="width:46mm">Código</th><th style="width:18mm">Hecho</th><th>Observaciones</th></tr></thead><tbody>
+ ${r.items.map((it,i)=>`<tr><td>${i+1}</td><td>${window.qrcode?qrSVG(it.code):''}</td><td class="mc">${esc(shortC(it.code))}<small>${esc(it.code)}</small></td><td><i class="mbox${it.done?' on':''}"></i></td><td></td></tr>`).join('')}
  </tbody></table>`;
  window.print();
  r.printed=Date.now();renderV();try{await saveRep(r)}catch(x){}
