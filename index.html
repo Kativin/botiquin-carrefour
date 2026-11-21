@@ -158,7 +158,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 <div id="cfgm" class="modal hidden"><div class="mbox">
  <h3>⚙ Configuración</h3>
  <div class="f" style="color:var(--ink);font-size:14px;font-weight:600">Carpeta de fotos</div>
- <p class="info" id="cfgfoto">Sin carpeta configurada: se usa la carpeta <b>Foto</b> dentro de la carpeta del HTML elegida en Buscador v2.</p>
+ <p class="info" id="cfgfoto">Sin carpeta configurada: las fotos se muestran desde internet pero no se guardan.</p>
  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cfgpick">📁 Elegir carpeta de fotos</button><button class="btn sec" id="cfgclr">Quitar</button></div>
  <p class="info">Buscador v2 y Listado Outlet buscan primero aquí la foto (ID.jpg) y, si la descargan de internet, la guardan aquí para no volver a descargarla.</p>
  <div style="text-align:right;margin-top:14px"><button class="btn sec" id="cfgclose">Cerrar</button></div>
@@ -166,7 +166,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 <section id="menu">
  <div class="grid">
   <div class="tile" data-go="dif"><span class="ver">v1.3<span class="pop"><b>Novedades v1.3</b><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
-  <div class="tile" data-go="bus"><span class="ver">v2.7<span class="pop"><b>Novedades v2.7</b><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
+  <div class="tile" data-go="bus"><span class="ver">v2.8<span class="pop"><b>Novedades v2.8</b><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
   <div class="tile" data-go="out"><span class="ver">v1.7<span class="pop"><b>Novedades v1.7</b><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
   <div class="tile off"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 5v14M5 12h14"/></svg></div><b>Próximamente</b><small>Nuevo apartado</small></div>
  </div>
@@ -218,11 +218,6 @@ tr.nf td{color:var(--mut);background:#fff7f7}
     <input type="file" accept=".xlsx,.xls">
    </div>
    <div class="info" id="binfo">Sin surtido guardado.</div>
-   <div class="info" id="bdir"></div>
-   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-    <button class="btn sec" id="bpick">📁 Elegir carpeta del HTML</button>
-    <button class="btn sec" id="breconn" style="display:none">🔄 Reconectar carpeta</button>
-   </div>
   </div>
   <div class="card">
    <h3 class="ct">2 · Códigos EAN a buscar</h3>
@@ -685,19 +680,7 @@ const kv=async(k,v)=>{const db=await idb();return new Promise((res,rej)=>{const 
 const fsOK='showDirectoryPicker' in window;
 const surInfo=(o,extra)=>{$('binfo').innerHTML=o?'📦 Surtido guardado: <b>'+o.date+'</b> · '+o.n+' artículos'+(o.sec&&o.sec.length?'<br>Secciones: <b>'+o.sec.join(' · ')+'</b>':'')+(extra||''):'Sin surtido guardado.'};
 const saveMeta=()=>{try{localStorage.setItem('bot_sur',JSON.stringify({date:index.date,n:index.n,sec:index.sec}))}catch(x){}kv('index',index).catch(()=>{})};
-function dirInfo(){
- $('bdir').innerHTML=!fsOK?'⚠ Este navegador no permite guardar en carpetas: usa Chrome o Edge. La copia se descargará y las fotos no se guardarán.'
-  :dir?'📁 Carpeta del HTML guardada: <b>'+dir.name+'</b> — aquí se guardan Surtido_optimizado.xlsx y la carpeta Foto':'Pulsa <b>Elegir carpeta del HTML</b> y entra en la carpeta <b>Botiquín Carrefour</b> (la que contiene este HTML) y pulsa «Seleccionar carpeta». No elijas el Escritorio entero: Chrome no lo permite.';
-}
-async function useDir(h){dir=h;try{await kv('dir',h)}catch(x){}
- $('breconn').style.display='none';$('bpick').textContent='📁 Cambiar carpeta';dirInfo();
- try{await dir.getDirectoryHandle('Foto',{create:true})}catch(x){}
- if(!index)await loadSaved();
-}
-$('bpick').onclick=async()=>{if(!fsOK)return dirInfo();try{useDir(await showDirectoryPicker({id:'botiquin',mode:'readwrite',startIn:'desktop'}))}catch(x){if(x.name!=='AbortError')$('bdir').innerHTML='⚠ '+x.message}};
-$('breconn').onclick=async()=>{const h=await kv('dir');if(h&&await h.requestPermission({mode:'readwrite'})==='granted')useDir(h)};
-(async()=>{dirInfo();if(!fsOK)return;try{const h=await kv('dir');if(!h)return;
- const p=await h.queryPermission({mode:'readwrite'});if(p==='granted')useDir(h);else{$('breconn').style.display='';$('bdir').innerHTML='📁 Carpeta guardada: <b>'+h.name+'</b> — pulsa "Reconectar carpeta" para usarla'}}catch(x){}})();
+
 try{surInfo(JSON.parse(localStorage.getItem('bot_sur')))}catch(x){surInfo(null)}
 // el último surtido queda guardado en el navegador: se puede buscar nada más abrir, sin reconectar la carpeta
 kv('index').then(ix=>{if(ix&&ix.ix&&!index){index=ix;surInfo(index);$('bgo').disabled=false}}).catch(()=>{});
@@ -720,30 +703,14 @@ async function loadFile(file){
    r.onprogress=e=>{if(e.lengthComputable)prog(Math.round(e.loaded/e.total*40),'Leyendo archivo… '+Math.round(e.loaded/e.total*100)+'%')};
    r.onload=()=>res(r.result);r.onerror=()=>rej(new Error('No se pudo leer el archivo'));r.readAsArrayBuffer(file)});
   prog(40,'Procesando Excel…');
-  const d=await runWorker(buf,true,prog);
+  const d=await runWorker(buf,false,prog);
   index=buildIndex(d.aoa);
-  let saved='';
-  if(!dir&&fsOK){try{const h=await kv('dir');if(h&&(await h.queryPermission({mode:'readwrite'})==='granted'||await h.requestPermission({mode:'readwrite'})==='granted'))await useDir(h)}catch(x){}}
-  if(dir){try{const fh=await dir.getFileHandle(COPY,{create:true});const w=await fh.createWritable();await w.write(d.copy);await w.close();
-    saved='<br>✔ Copia actualizada en <b>'+dir.name+'/'+COPY+'</b> ('+(d.copy.byteLength/1048576).toFixed(1)+' MB)'}catch(x){saved='<br>⚠ No se pudo guardar la copia: '+x.message}}
-  else{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([d.copy]));a.download=COPY;a.click();
-   saved='<br>⚠ No hay carpeta elegida: la copia se ha descargado. Elige la carpeta del HTML para que se guarde allí.'}
   saveMeta();
   prog(100,'Completado 100%');setTimeout(hideP,700);
   z.querySelector('.fn').textContent='✔ '+file.name;
-  surInfo(index,saved);
+  surInfo(index,'<br>✔ Surtido guardado en este navegador');
  }catch(x){hideP();z.querySelector('.fn').textContent='⚠ '+x.message}
  z.classList.remove('loading');$('bgo').disabled=!index;
-}
-async function loadSaved(){
- try{const fh=await dir.getFileHandle(COPY);const f=await fh.getFile();
-  z.classList.add('loading');prog(20,'Abriendo copia guardada…');
-  const d=await runWorker(await f.arrayBuffer(),false,prog);index=buildIndex(d.aoa);
-  prog(100,'Completado 100%');setTimeout(hideP,700);
-  saveMeta();surInfo(index);
-  $('bgo').disabled=false;
- }catch(x){hideP()}
- z.classList.remove('loading');
 }
 
 /* ---- búsqueda ---- */
@@ -784,8 +751,7 @@ function renderB(){const t=tableHTML(true);$('bth').innerHTML=t.th;$('btb').inne
 /* Foto: primero carpeta Foto (junto al HTML); si no está, se descarga de la web y se guarda como Foto/<n>.jpg */
 async function fotoDir(){
  if(fsOK){try{const f=await kv('fotodir');if(f){let p=await f.queryPermission({mode:'readwrite'});if(p!=='granted')try{p=await f.requestPermission({mode:'readwrite'})}catch(x){}if(p==='granted')return f}}catch(x){}}
- if(!dir&&fsOK){try{const h=await kv('dir');if(h&&await h.queryPermission({mode:'readwrite'})==='granted')await useDir(h)}catch(x){}}
- if(!dir)return null;try{return await dir.getDirectoryHandle('Foto',{create:true})}catch(x){return null}
+ return null; // sin carpeta configurada en ⚙: las fotos se muestran desde internet sin guardarse
 }
 async function photoFor(n,foto){
  if(!n)return '';if(photoCache[n])return photoCache[n];
@@ -854,7 +820,7 @@ async function printRep(withImg){
 }
 /* ---- configuración: carpeta de fotos ---- */
 const cfgShow=async()=>{let f=null;try{f=await kv('fotodir')}catch(x){}
- $('cfgfoto').innerHTML=f?'📁 Carpeta de fotos: <b>'+f.name+'</b>':'Sin carpeta configurada: se usa la carpeta <b>Foto</b> dentro de la carpeta del HTML elegida en Buscador v2.'};
+ $('cfgfoto').innerHTML=f?'📁 Carpeta de fotos: <b>'+f.name+'</b>':'Sin carpeta configurada: las fotos se muestran desde internet pero no se guardan.'};
 $('cfg').onclick=()=>{$('cfgm').classList.remove('hidden');cfgShow()};
 $('cfgclose').onclick=()=>$('cfgm').classList.add('hidden');
 $('cfgm').onclick=e=>{if(e.target.id==='cfgm')$('cfgm').classList.add('hidden')};
