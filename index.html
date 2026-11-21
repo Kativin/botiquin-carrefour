@@ -93,6 +93,23 @@ td.nou{color:#b45309;font-style:italic}
 tr.nf td{color:var(--mut);background:#fff7f7}
 .bimg{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:6px}
 #printArea{display:none}
+.mcard{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.mbig{width:100%;padding:14px;font-size:16px;border-radius:12px}
+.mrow{display:flex;gap:8px}.mrow input,.mtask{flex:1;min-width:0;padding:12px;border:1px solid var(--bd);border-radius:10px;font-size:15px}
+.mlisth{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:14px}.mlisth span{background:#eef3ff;color:#1e40af;font-weight:700;border-radius:10px;padding:1px 10px}
+.mlist{border:1px solid var(--bd);border-radius:10px;max-height:38vh;overflow:auto}
+.mit{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid #eef1f6}.mit:last-child{border-bottom:0}
+.mit b{flex:1;font:700 15px Consolas,monospace}.mit .mn{color:var(--mut);font-size:12px;min-width:18px}.mit .mt{color:var(--mut);font-size:12px}
+.mit button{border:0;background:#fee2e2;color:#b91c1c;border-radius:8px;width:30px;height:30px;font-size:14px;cursor:pointer}
+.mempty{color:var(--mut);text-align:center;padding:16px;font-size:14px}
+.mclr{align-self:center;background:none;color:var(--mut);font-size:13px;padding:4px 10px}
+#mhb tr{cursor:pointer}
+@media (max-width:760px){
+ main{padding:12px 10px}header{padding:12px 14px}header h1{font-size:17px}
+ .bgrid,.zones,.kpis{grid-template-columns:1fr!important}
+ .filters{gap:8px;padding:10px}.grid{grid-template-columns:1fr 1fr;gap:12px}#menu{padding:16px 12px}
+ .tile{padding:20px 10px}.tile .ic{width:58px;height:58px}
+}
 #printArea .mhead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #1e3a8a;padding-bottom:2mm;margin-bottom:3mm;font-family:"Segoe UI",Arial,sans-serif;color:#1e3a8a;font-size:13px}
 #printArea .mhead span{font-size:9px;color:#475069}
 #printArea table.mtab{font-size:11px}#printArea .mtab td{height:20mm;vertical-align:middle}#printArea .mtab tr{break-inside:avoid}#printArea .mqr{width:19mm;height:19mm;display:block;margin:auto}
@@ -179,7 +196,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
   <div class="tile" data-go="dif"><span class="ver">v1.4<span class="pop"><b>Novedades v1.4</b><i>Solo es obligatorio el documento 1</i><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
   <div class="tile" data-go="bus"><span class="ver">v2.8<span class="pop"><b>Novedades v2.8</b><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
   <div class="tile" data-go="out"><span class="ver">v1.8<span class="pop"><b>Novedades v1.8</b><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
-  <div class="tile" data-go="map"><span class="ver">v2.1<span class="pop"><b>Novedades v2.1</b><i>Quitada la ubicación y la lectura del texto</i><i>Generar reporte vacía la lista y lo guarda (online si está configurado)</i><i>Reportes en el ordenador: marcar Hecho e imprimir</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3"/></svg></div><b>Reporte Mapeo</b><small>Captura QR de ubicaciones y reporte para chequear</small></div>
+  <div class="tile" data-go="map"><span class="ver">v2.2<span class="pop"><b>Novedades v2.2</b><i>Pantalla más limpia para el móvil: todo en un paso</i><i>Generar reporte abajo; al pulsarlo se limpian los campos</i><i>Quitada la ubicación y la lectura del texto</i><i>Generar reporte vacía la lista y lo guarda (online si está configurado)</i><i>Reportes en el ordenador: marcar Hecho e imprimir</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3"/></svg></div><b>Reporte Mapeo</b><small>Captura QR de ubicaciones y reporte para chequear</small></div>
  </div>
 </section>
 <main id="app-dif" style="display:none">
@@ -281,34 +298,25 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 </main>
 <main id="app-map" style="display:none">
  <section id="mcap">
- <div class="bgrid">
-  <div class="card">
-   <h3 class="ct">1 · Capturar QR</h3>
-   <div id="mcamw" class="hidden" style="position:relative;border-radius:12px;overflow:hidden;background:#000;margin-bottom:10px">
-    <video id="mvid" playsinline muted style="width:100%;display:block;max-height:380px;object-fit:cover"></video>
-    <div style="position:absolute;inset:8% 22% 14%;border:3px solid #22c55e;border-radius:14px;box-shadow:0 0 0 2000px rgba(0,0,0,.25)"></div>
-        <div id="mflash" style="position:absolute;inset:0;background:#22c55e;opacity:0;transition:opacity .3s;pointer-events:none"></div>
-   </div>
-   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="mcam">📷 Abrir cámara</button></div>
-   <div class="f" style="margin-top:12px">O escribe el código a mano
-    <div style="display:flex;gap:6px"><input id="mman" placeholder="Código del QR" style="flex:1"><button class="btn sec" id="madd">Añadir</button></div></div>
-   <div class="info" id="mmsg"></div>
+ <div class="card mcard">
+  <div id="mcamw" class="hidden" style="position:relative;border-radius:12px;overflow:hidden;background:#000;margin-bottom:10px">
+   <video id="mvid" playsinline muted style="width:100%;display:block;max-height:46vh;object-fit:cover"></video>
+   <div style="position:absolute;inset:18% 20%;border:3px solid #22c55e;border-radius:14px;box-shadow:0 0 0 2000px rgba(0,0,0,.25)"></div>
+   <div id="mflash" style="position:absolute;inset:0;background:#22c55e;opacity:0;transition:opacity .3s;pointer-events:none"></div>
   </div>
-  <div class="card">
-   <h3 class="ct">2 · Generar reporte</h3>
-   <div class="f">Tarea a realizar<input id="mtask" placeholder="Ej.: Revisar etiquetas de precio" style="width:100%"></div>
-   <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-    <button class="btn" id="mgen">📤 Generar reporte</button>
-    <button class="btn sec" id="mclear">🗑 Vaciar lista</button>
-   </div>
-   <div class="info" id="msrv"></div>
-  </div>
+  <button class="btn mbig" id="mcam">📷 Abrir cámara</button>
+  <div class="mrow"><input id="mman" placeholder="O escribe el código a mano" inputmode="numeric"><button class="btn sec" id="madd">Añadir</button></div>
+  <div class="info" id="mmsg"></div>
+  <div class="mlisth"><b>QR capturados</b><span id="mcnt">0</span></div>
+  <div id="mtb" class="mlist"></div>
+  <input id="mtask" placeholder="Tarea a realizar (opcional)" class="mtask">
+  <button class="btn mbig" id="mgen">📤 Generar reporte</button>
+  <button class="btn sec mclr" id="mclear">Vaciar lista</button>
+  <div class="info" id="msrv" style="font-size:12px"></div>
  </div>
- <div class="filters"><b style="font-size:14px">QR capturados</b><span class="msg" id="mcnt"></span></div>
- <div class="tw"><table><thead><tr><th>#</th><th>Código QR</th><th>Capturado</th><th></th></tr></thead><tbody id="mtb"></tbody></table></div>
- <div class="filters" style="margin-top:18px"><b style="font-size:14px">📚 Reportes generados</b><span class="msg" id="mhinfo">Ordenados por fecha</span>
-  <button class="btn sec" id="mref">🔄 Actualizar</button></div>
- <div class="tw"><table><thead><tr><th>Fecha</th><th>Tarea</th><th>QR</th><th>Hechos</th><th>Estado</th><th></th></tr></thead><tbody id="mhb"></tbody></table></div>
+ <div class="filters" style="margin-top:16px"><b style="font-size:14px">📚 Reportes generados</b><span class="msg" id="mhinfo"></span>
+  <button class="btn sec" id="mref">🔄</button></div>
+ <div class="tw"><table><thead><tr><th>Fecha</th><th>Tarea</th><th>QR</th><th>Hechos</th><th>Estado</th></tr></thead><tbody id="mhb"></tbody></table></div>
  </section>
  <section id="mview" class="hidden">
   <div class="filters"><button class="btn sec" id="mback">← Volver</button><b id="mvt" style="font-size:15px"></b><span class="msg" id="mvc"></span>
@@ -1017,9 +1025,8 @@ const fmtT=t=>new Date(t).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',
 const fmtD=t=>new Date(t).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
 const shortC=c=>String(c).replace(/^0+(?=\d{6})/,'');
 function render(){
- $('mtb').innerHTML=L.map((e,i)=>`<tr><td class="rn">${i+1}</td><td style="font-family:Consolas,monospace;font-weight:600">${esc(shortC(e.code))}</td>
-  <td style="color:var(--mut)">${fmtT(e.t)}</td><td><button class="btn sec" data-d="${i}" style="padding:4px 9px">✕</button></td></tr>`).join('')||'<tr><td colspan="4" style="color:var(--mut);text-align:center;padding:20px">Todavía no hay QR capturados</td></tr>';
- $('mcnt').textContent=L.length+' QR';
+ $('mtb').innerHTML=L.map((e,i)=>`<div class="mit"><span class="mn">${i+1}</span><b>${esc(shortC(e.code))}</b><span class="mt">${fmtT(e.t)}</span><button data-d="${i}" title="Quitar">✕</button></div>`).join('')||'<div class="mempty">Todavía no hay QR capturados</div>';
+ $('mcnt').textContent=L.length;
  $('mtb').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{L.splice(+b.dataset.d,1);save();render()});
 }
 const msg=(t,ok)=>{$('mmsg').innerHTML=t;$('mmsg').style.color=ok===false?'var(--red)':ok?'var(--grn)':'var(--mut)'};
@@ -1075,9 +1082,9 @@ async function api(body){const u=SRV();
  if(!body){const r=await fetch(u+(u.includes('?')?'&':'?')+'action=list&t='+Date.now());if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}
  const r=await fetch(u,{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}
 async function loadH(){
- if(!SRV()){H=loadLocal();$('msrv').innerHTML='⚠ Sin servicio online: los reportes solo se ven en este dispositivo. Configúralo en ⚙ del inicio.';renderH();return}
+ if(!SRV()){H=loadLocal();$('msrv').innerHTML='Los reportes se guardan en este dispositivo (online: ⚙ en el inicio)';renderH();return}
  $('msrv').innerHTML='☁ Reportes online activados';$('mhinfo').textContent='Cargando…';
- try{const d=await api();H=d.reports||[];$('mhinfo').textContent='Ordenados por fecha · actualizado '+new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'})}
+ try{const d=await api();H=d.reports||[];$('mhinfo').textContent='Actualizado '+new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'})}
  catch(x){$('mhinfo').textContent='⚠ No se pudo conectar con el servicio online: '+x.message}
  renderH()}
 async function saveRep(r){
@@ -1088,15 +1095,15 @@ $('mref').onclick=loadH;
 $('mgen').onclick=async()=>{if(!L.length){msg('No hay QR capturados',false);return}
  const r={id:Date.now(),date:Date.now(),task:$('mtask').value.trim(),items:L.map(e=>({code:e.code,done:false})),printed:0};
  $('mgen').disabled=true;$('mgen').textContent='Guardando…';
- try{await saveRep(r);L=[];$('mtask').value='';save();render();renderH();msg('✔ Reporte generado'+(SRV()?' y disponible en el ordenador':'')+'. Lista lista para un reporte nuevo',true)}
+ try{await saveRep(r);L=[];$('mtask').value='';$('mman').value='';save();render();renderH();msg('✔ Reporte generado'+(SRV()?' y disponible en el ordenador':'')+'. Lista lista para un reporte nuevo',true)}
  catch(x){msg('⚠ No se pudo guardar el reporte: '+x.message+'. La lista no se ha vaciado',false)}
  $('mgen').disabled=false;$('mgen').textContent='📤 Generar reporte'};
 function renderH(){
  const v=[...H].sort((a,b)=>b.date-a.date);
  $('mhb').innerHTML=v.map(r=>{const n=r.items.length,d=r.items.filter(i=>i.done).length;
   return `<tr data-o="${r.id}" style="cursor:pointer"><td>${fmtD(r.date)}</td><td class="wrap">${esc(r.task||'—')}</td><td class="num">${n}</td><td class="num">${d}/${n}</td>
-  <td>${r.printed?'<span class="okp">✔ Impreso</span>':'<span class="pdp">Pendiente</span>'}</td><td><button class="btn sec" style="padding:4px 10px">Abrir</button></td></tr>`}).join('')
-  ||'<tr><td colspan="6" style="color:var(--mut);text-align:center;padding:16px">Aún no hay reportes</td></tr>';
+  <td>${r.printed?'<span class="okp">✔ Impreso</span>':'<span class="pdp">Pendiente</span>'}</td></tr>`}).join('')
+  ||'<tr><td colspan="5" style="color:var(--mut);text-align:center;padding:16px">Aún no hay reportes</td></tr>';
  $('mhb').querySelectorAll('[data-o]').forEach(t=>t.onclick=()=>openRep(+t.dataset.o));
 }
 /* ---- ver un reporte, marcarlo e imprimirlo ---- */
