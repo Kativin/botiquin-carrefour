@@ -165,15 +165,15 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 </div></div>
 <section id="menu">
  <div class="grid">
-  <div class="tile" data-go="dif"><span class="ver">v1.3<span class="pop"><b>Novedades v1.3</b><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
+  <div class="tile" data-go="dif"><span class="ver">v1.4<span class="pop"><b>Novedades v1.4</b><i>Solo es obligatorio el documento 1</i><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
   <div class="tile" data-go="bus"><span class="ver">v2.8<span class="pop"><b>Novedades v2.8</b><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
-  <div class="tile" data-go="out"><span class="ver">v1.7<span class="pop"><b>Novedades v1.7</b><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
+  <div class="tile" data-go="out"><span class="ver">v1.8<span class="pop"><b>Novedades v1.8</b><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
   <div class="tile off"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 5v14M5 12h14"/></svg></div><b>Próximamente</b><small>Nuevo apartado</small></div>
  </div>
 </section>
 <main id="app-dif" style="display:none">
 <section class="zones" id="zones"></section>
-<div class="bar" style="flex-direction:column;align-items:center;gap:6px"><button class="btn" id="go" disabled>Analizar diferencias</button><small style="color:var(--mut)">Obligatorio: documento 1 y, al menos, el documento 2 o el 3</small></div>
+<div class="bar" style="flex-direction:column;align-items:center;gap:6px"><button class="btn" id="go" disabled>Analizar diferencias</button><small style="color:var(--mut)">Obligatorio: documento 1. Para mejores resultados añade también el 2 (ubicaciones) y/o el 3 (capturas)</small></div>
 
 <section id="res" class="hidden">
  <div class="kpis" id="kpis"></div>
@@ -251,7 +251,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
     <h3>Informe de surtido</h3><div class="fn">Arrastra aquí o pulsa la carpeta (nombre con "REPORT_S")</div>
     <div class="pb"><i></i></div><div class="pt"></div><input type="file" accept=".xlsx,.xls"></div>
   </div>
-  <div class="bar"><button class="btn" id="ogo" disabled>Analizar Outlet</button></div>
+  <div class="bar" style="flex-direction:column;align-items:center;gap:6px"><button class="btn" id="ogo" disabled>Analizar Outlet</button><small style="color:var(--mut)">Obligatorio: listado 1. Sin surtido, el stock se toma de UNIDADES_STOCK del listado y no hay ubicaciones</small></div>
  </section>
  <section id="ores" class="hidden">
   <div class="filters">
@@ -435,7 +435,7 @@ function fixRange(ws){ // algunos Excel declaran un rango (!ref) más corto que 
   if(a.r<r1)r1=a.r;if(a.c<c1)c1=a.c;if(a.r>r2)r2=a.r;if(a.c>c2)c2=a.c}
  if(any)ws['!ref']=XLSX.utils.encode_range({s:{r:r1,c:c1},e:{r:r2,c:c2}});
 }
-function canGo(){document.getElementById('go').disabled=!(data.dif&&(data.sur||data.cap))}
+function canGo(){document.getElementById('go').disabled=!data.dif}
 function load(z,file,el){
  if(!file.name.toLowerCase().includes(z.pat.toLowerCase())){
   el.classList.remove('ok');delete data[z.k];canGo();
@@ -854,9 +854,9 @@ async function readAoa(buf,opts,prog){
  });
 }
 const ZS={
- out:{el:$('oz1'),pat:/gb resto/i,patTxt:'GB Resto',opts:{headerKeys:['codigo_art','scodean'],keep:['codigo_art','sdesartic','scodean','centro','sector','seccion']}},
+ out:{el:$('oz1'),pat:/gb resto/i,patTxt:'GB Resto',opts:{headerKeys:['codigo_art','scodean'],keep:['codigo_art','sdesartic','scodean','centro','sector','seccion','unidades_stock']}},
  sur:{el:$('oz2'),pat:/report_s/i,patTxt:'REPORT_S',opts:{headerKeys:['ean','id'],keep:['ean','stock disp','stock no disp','ubicacion']}}};
-const canGo=()=>{$('ogo').disabled=!(D.out&&(D.sur||surSaved))};
+const canGo=()=>{$('ogo').disabled=!D.out};
 for(const k in ZS){const z=ZS[k],el=z.el,inp=el.querySelector('input'),pb=el.querySelector('.pb'),fill=pb.querySelector('i'),pt=el.querySelector('.pt');
  const prog=(p,t)=>{pb.style.display='block';pt.style.display='block';if(p!=null)fill.style.width=p+'%';pt.textContent=t};
  const hide=()=>{pb.style.display='none';pt.style.display='none'};
@@ -871,8 +871,8 @@ for(const k in ZS){const z=ZS[k],el=z.el,inp=el.querySelector('input'),pb=el.que
     r.onload=()=>res(r.result);r.onerror=()=>rej(new Error('No se pudo leer el archivo'));r.readAsArrayBuffer(file)});
    const aoa=await readAoa(buf,z.opts,prog);
    const h=aoa[0].map(nm),ix=n=>h.indexOf(n);
-   if(k==='out'){const c={id:ix('codigo_art'),des:ix('sdesartic'),ean:ix('scodean'),cen:ix('centro'),sec:ix('sector'),secc:ix('seccion')};
-    D.out=aoa.slice(1).map(r=>({id:String(r[c.id]??''),des:r[c.des]??'',ean:String(r[c.ean]??'').replace(/\D/g,''),cen:String(r[c.cen]??'').trim(),sec:String(r[c.sec]??'').trim(),secc:String(r[c.secc]??'').trim()}));}
+   if(k==='out'){const c={id:ix('codigo_art'),des:ix('sdesartic'),ean:ix('scodean'),cen:ix('centro'),sec:ix('sector'),secc:ix('seccion'),us:ix('unidades_stock')};
+    D.out=aoa.slice(1).map(r=>({id:String(r[c.id]??''),des:r[c.des]??'',ean:String(r[c.ean]??'').replace(/\D/g,''),cen:String(r[c.cen]??'').trim(),sec:String(r[c.sec]??'').trim(),secc:String(r[c.secc]??'').trim(),us:c.us<0?'':(r[c.us]??'')}));}
    else{const c={ean:ix('ean'),s:ix('stock disp'),nd:ix('stock no disp'),u:ix('ubicacion')},m={};
     for(let i=1;i<aoa.length;i++){const r=aoa[i],e=ek(r[c.ean]);if(!e)continue;
      const o=m[e]||(m[e]={stk:r[c.s]??'',stknd:r[c.nd]??'',ubis:[]});const u=String(r[c.u]??'').trim();if(u&&!o.ubis.includes(u))o.ubis.push(u)}
@@ -896,7 +896,9 @@ const opt=(sel,vals,keep)=>{const cur=keep?sel.value:'';sel.innerHTML='<option v
 const uniqS=a=>[...new Set(a.filter(Boolean))].sort((x,y)=>x.localeCompare(y,'es'));
 $('ogo').onclick=()=>{
  const S=D.sur||surSaved;
- rows=D.out.map(r=>{const s=S[ek(r.ean)];return {...r,nf:!s,stk:s?s.stk:'',stknd:s?s.stknd:'',ubi:s?(s.ubis&&s.ubis.length?s.ubis.join('\n'):(s.ubi||'')):''}});
+ // sin surtido: el stock sale de UNIDADES_STOCK del listado
+ if(!S){rows=D.out.map(r=>({...r,nf:false,noSur:true,stk:r.us,stknd:'',ubi:''}))}
+ else rows=D.out.map(r=>{const s=S[ek(r.ean)];return {...r,nf:!s,stk:s?s.stk:'',stknd:s?s.stknd:'',ubi:s?(s.ubis&&s.ubis.length?s.ubis.join('\n'):(s.ubi||'')):''}});
  opt($('ocen'),uniqS(rows.map(r=>r.cen)));
  const v=[...$('ocen').options].find(o=>nm(o.value).startsWith('vigo i ('));if(v)$('ocen').value=v.value;
  fillDeps();$('oload').classList.add('hidden');$('ores').classList.remove('hidden');renderO();
@@ -912,7 +914,7 @@ function view(){const c=$('ocen').value,s=$('osec').value,x=$('osecc').value,q=n
  let v=rows.filter(r=>(!c||r.cen===c)&&(!s||r.sec===s)&&(!x||r.secc===x)&&(!st||+r.stk>0)&&(!q||nm(r.id+' '+r.ean+' '+r.des).includes(q)));
  if(sortK){const d=sortK[0]==='-'?-1:1,k=sortK.replace('-','');v=[...v].sort((a,b)=>{const p=a[k],o=b[k];const np=+p,no=+o;return(!isNaN(np)&&!isNaN(no)&&p!==''&&o!==''?np-no:String(p).localeCompare(String(o),'es',{numeric:true}))*d})}
  return v}
-const ubiCell=r=>r.nf?'<span class="nou">No está en el surtido</span>':r.ubi?r.ubi.split('\n').join('<br>'):'<span class="nou">Art. no ubicado</span>';
+const ubiCell=r=>r.noSur?'<span class="nou">Sin surtido cargado</span>':r.nf?'<span class="nou">No está en el surtido</span>':r.ubi?r.ubi.split('\n').join('<br>'):'<span class="nou">Art. no ubicado</span>';
 function rowsHTML(v){return v.map(r=>`<tr class="${r.nf?'nf':''}"><td>${r.id}</td><td>${r.ean}</td><td class="wrap">${r.des}</td><td>${r.sec}</td><td>${r.secc}</td><td class="num">${r.stk}</td><td class="num nd">${r.stknd}</td><td class="cap">${ubiCell(r)}</td></tr>`).join('')}
 function renderO(){const v=view();
  $('oth').innerHTML='<tr>'+OC.map(c=>`<th data-k="${c[0]}">${c[1]}${sortK===c[0]?' ▲':sortK==='-'+c[0]?' ▼':''}</th>`).join('')+'</tr>';
@@ -931,7 +933,7 @@ $('oprinti').onclick=async()=>{
  const pc={};await window.BOT.photosFor(v.map(r=>String(r.id).replace(/\D/g,'')),(n,u)=>pc[n]=u);
  btn.disabled=false;btn.textContent=t0;
  const card=r=>{const n=String(r.id).replace(/\D/g,'');
-  const ub=r.nf?'<div class="u nou">No está en el surtido</div>':r.ubi?r.ubi.split('\n').slice(0,5).map(u=>`<div class="u">${u}</div>`).join(''):'<div class="u nou">Art. no ubicado</div>';
+  const ub=r.noSur?'<div class="u nou">Sin surtido cargado</div>':r.nf?'<div class="u nou">No está en el surtido</div>':r.ubi?r.ubi.split('\n').slice(0,5).map(u=>`<div class="u">${u}</div>`).join(''):'<div class="u nou">Art. no ubicado</div>';
   return `<div class="pc oc${r.stk!==''&&+r.stk===0?' zero':''}"><div class="ptit">${r.des}</div><div class="pl">${ub}</div>
    <div class="pr"><img src="${pc[n]||window.BOT.photoURL(n)}" onerror="this.style.visibility='hidden'">
     <div class="stk">Stock: <b>${r.stk===''?'-':r.stk}</b>${+r.stknd?` <span class="nd">ND ${r.stknd}</span>`:''}</div></div>
