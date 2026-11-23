@@ -20,9 +20,32 @@ function salida_(obj) {
 }
 
 function doGet(e) {
+  const p = (e && e.parameter) || {};
+  // Guardar por GET (lo usa la app para evitar bloqueos del navegador): ?action=save&data=<json>
+  if (p.action === 'save' && p.data) guardar_(JSON.parse(p.data));
   const filas = hoja_().getDataRange().getValues().slice(1);
   const reports = filas.filter(f => f[6]).map(f => JSON.parse(f[6]));
-  return salida_({ ok: true, reports: reports });
+  const out = JSON.stringify({ ok: true, reports: reports });
+  // JSONP: ?callback=nombre
+  if (p.callback) return ContentService.createTextOutput(p.callback + '(' + out + ')').setMimeType(ContentService.MimeType.JAVASCRIPT);
+  return ContentService.createTextOutput(out).setMimeType(ContentService.MimeType.JSON);
+}
+
+function guardar_(r) {
+  if (!r || !r.id) return;
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const sh = hoja_();
+    const ids = sh.getRange(1, 1, Math.max(sh.getLastRow(), 1), 1).getValues().map(x => String(x[0]));
+    const fila = [String(r.id), new Date(r.date), r.task || '', r.items.length,
+      r.items.filter(i => i.done).length, r.printed ? new Date(r.printed) : '', JSON.stringify(r)];
+    const i = ids.indexOf(String(r.id));
+    if (i > 0) sh.getRange(i + 1, 1, 1, fila.length).setValues([fila]);
+    else sh.appendRow(fila);
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function doPost(e) {
