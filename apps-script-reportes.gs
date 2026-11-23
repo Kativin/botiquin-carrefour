@@ -23,12 +23,25 @@ function doGet(e) {
   const p = (e && e.parameter) || {};
   // Guardar por GET (lo usa la app para evitar bloqueos del navegador): ?action=save&data=<json>
   if (p.action === 'save' && p.data) guardar_(JSON.parse(p.data));
+  if (p.action === 'delete' && p.id) borrar_(String(p.id));
   const filas = hoja_().getDataRange().getValues().slice(1);
   const reports = filas.filter(f => f[6]).map(f => JSON.parse(f[6]));
   const out = JSON.stringify({ ok: true, reports: reports });
   // JSONP: ?callback=nombre
   if (p.callback) return ContentService.createTextOutput(p.callback + '(' + out + ')').setMimeType(ContentService.MimeType.JAVASCRIPT);
   return ContentService.createTextOutput(out).setMimeType(ContentService.MimeType.JSON);
+}
+
+function borrar_(id) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const sh = hoja_();
+    const ids = sh.getRange(1, 1, Math.max(sh.getLastRow(), 1), 1).getValues().map(x => String(x[0]));
+    for (let i = ids.length - 1; i > 0; i--) if (ids[i] === id) sh.deleteRow(i + 1);
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function guardar_(r) {
