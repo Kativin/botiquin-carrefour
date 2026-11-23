@@ -93,6 +93,10 @@ td.nou{color:#b45309;font-style:italic}
 tr.nf td{color:var(--mut);background:#fff7f7}
 .bimg{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:6px}
 #printArea{display:none}
+.msel{position:relative}.msb{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;background:#fff;font-size:13px;min-width:170px;text-align:left;cursor:pointer;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.msp{position:absolute;z-index:20;top:100%;left:0;margin-top:4px;background:#fff;border:1px solid var(--bd);border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.15);max-height:320px;overflow:auto;min-width:240px;padding:6px 0;color:var(--ink)}
+.msp label{display:flex;gap:8px;align-items:center;padding:5px 12px;font-size:13px;cursor:pointer}.msp label:hover{background:#f3f6fd}
+.msa{padding:4px 12px 6px;font-size:12px;border-bottom:1px solid #eef1f6;margin-bottom:4px}.msa a{color:var(--pri);cursor:pointer}
 .mcard{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
 .mbig{width:100%;padding:14px;font-size:16px;border-radius:12px}
 .mrow{display:flex;gap:8px}.mrow input,.mtask{flex:1;min-width:0;padding:12px;border:1px solid var(--bd);border-radius:10px;font-size:15px}
@@ -200,6 +204,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
   <div class="tile" data-go="bus"><span class="ver">v2.8<span class="pop"><b>Novedades v2.8</b><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
   <div class="tile" data-go="out"><span class="ver">v1.8<span class="pop"><b>Novedades v1.8</b><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
   <div class="tile" data-go="map"><span class="ver">v2.7<span class="pop"><b>Novedades v2.7</b><i>Eliminar reportes del historial (también online)</i><i>Segundo método de conexión para ordenadores con cuenta de Google de empresa</i><i>Conexión con Google más compatible con iPhone (requiere actualizar el script)</i><i>Acepta direcciones de cuentas de empresa y explica el error</i><i>Si no hay conexión, el reporte se guarda y se sube después</i><i>Botón «Probar conexión» en ⚙</i><i>En el móvil la pantalla ya no se amplía al escribir</i><i>Pantalla más limpia para el móvil: todo en un paso</i><i>Generar reporte abajo; al pulsarlo se limpian los campos</i><i>Quitada la ubicación y la lectura del texto</i><i>Generar reporte vacía la lista y lo guarda (online si está configurado)</i><i>Reportes en el ordenador: marcar Hecho e imprimir</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3"/></svg></div><b>Reporte Mapeo</b><small>Captura QR de ubicaciones y reporte para chequear</small></div>
+  <div class="tile" data-go="cmp"><span class="ver">v1.0<span class="pop"><b>Novedades v1.0</b><i>Compara dos surtidos (.xls o .xlsx)</i><i>Filtros múltiples por sección y familia</i><i>Reportes con imágenes y códigos de barras de lo que tiene una tienda y no la otra</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 9h4M12 7l2 2-2 2M14 15h-4M12 13l-2 2 2 2"/></svg></div><b>Compara Surtido</b><small>Diferencias de surtido entre dos tiendas</small></div>
  </div>
 </section>
 <main id="app-dif" style="display:none">
@@ -328,17 +333,47 @@ tr.nf td{color:var(--mut);background:#fff7f7}
   <div class="tw"><table><thead><tr><th>#</th><th>Hecho</th><th>Código QR</th></tr></thead><tbody id="mvb"></tbody></table></div>
  </section>
 </main>
+<main id="app-cmp" style="display:none">
+ <section id="cload">
+  <div class="zones" style="grid-template-columns:1fr 1fr">
+   <div class="zone" id="cz1"><span class="n">1</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 11v5M9.5 13.5 12 11l2.5 2.5"/></svg>
+    <h3>Surtido Tienda 1</h3><div class="fn">Arrastra aquí o pulsa la carpeta (.xls o .xlsx)</div><div class="pb"><i></i></div><div class="pt"></div><input type="file" accept=".xlsx,.xls"></div>
+   <div class="zone" id="cz2"><span class="n">2</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 11v5M9.5 13.5 12 11l2.5 2.5"/></svg>
+    <h3>Surtido Tienda 2</h3><div class="fn">Arrastra aquí o pulsa la carpeta (.xls o .xlsx)</div><div class="pb"><i></i></div><div class="pt"></div><input type="file" accept=".xlsx,.xls"></div>
+  </div>
+  <div class="bar"><button class="btn" id="cgo" disabled>Comparar surtidos</button></div>
+ </section>
+ <section id="cres" class="hidden">
+  <div class="filters">
+   <div class="f">Sección<div class="msel" id="csec"></div></div>
+   <div class="f">Familia<div class="msel" id="cfam"></div></div>
+   <div class="f">Mostrar<select id="cwho"><option value="all">Todos</option><option value="both">En las dos tiendas</option><option value="only1">Solo en Tienda 1</option><option value="only2">Solo en Tienda 2</option></select></div>
+   <div class="f">Buscar<input id="cq" placeholder="ID, EAN, texto…"></div>
+   <label class="f" style="flex-direction:row;align-items:center;gap:6px"><input type="checkbox" id="cstk"> Sin stock = no lo tiene</label>
+   <span class="msg" id="ccnt"></span>
+   <button class="btn sec" id="cback">📂 Cargar archivos</button>
+  </div>
+  <div class="filters"><b style="font-size:13px">Reporte con imágenes:</b>
+   <button class="btn" id="crep2">🖼 Tiene Tienda 2 y no Tienda 1</button>
+   <button class="btn" id="crep1">🖼 Tiene Tienda 1 y no Tienda 2</button>
+   <span class="info" style="margin:0">Respeta los filtros de sección, familia y búsqueda</span></div>
+  <div class="tw"><table><thead id="cth"></thead><tbody id="ctb"></tbody></table></div>
+ </section>
+</main>
 <div id="printArea"></div>
 <style id="pgsz">@media print{@page{size:A4 landscape;margin:8mm}}</style>
 
 <script>
-const TT={menu:['Botiquín Todo en Uno Carrefour','Herramientas de tienda'],dif:['Diferencias Inventario','Botiquín Todo en Uno Carrefour'],bus:['Buscador v2','Botiquín Todo en Uno Carrefour'],out:['Listado Outlet','Botiquín Todo en Uno Carrefour'],map:['Reporte Mapeo','Botiquín Todo en Uno Carrefour']};
+const TT={menu:['Botiquín Todo en Uno Carrefour','Herramientas de tienda'],dif:['Diferencias Inventario','Botiquín Todo en Uno Carrefour'],bus:['Buscador v2','Botiquín Todo en Uno Carrefour'],out:['Listado Outlet','Botiquín Todo en Uno Carrefour'],map:['Reporte Mapeo','Botiquín Todo en Uno Carrefour'],cmp:['Compara Surtido','Botiquín Todo en Uno Carrefour']};
 const show=v=>{
  document.getElementById('menu').style.display=v==='menu'?'':'none';
  document.getElementById('app-dif').style.display=v==='dif'?'':'none';
  document.getElementById('app-bus').style.display=v==='bus'?'':'none';
  document.getElementById('app-out').style.display=v==='out'?'':'none';
  document.getElementById('app-map').style.display=v==='map'?'':'none';
+ document.getElementById('app-cmp').style.display=v==='cmp'?'':'none';
  document.getElementById('home').style.display=v==='menu'?'none':'flex';
  document.getElementById('cfg').style.display=v==='menu'?'flex':'none';
  document.getElementById('htitle').textContent=TT[v][0];document.getElementById('hsub').textContent=TT[v][1];
@@ -1179,6 +1214,111 @@ $('mvprint').onclick=async()=>{const r=cur;if(!r)return;
 };
 render();loadH();
 window.addEventListener('botcfg',loadH);
+})();
+</script>
+<script>
+/* ===================== COMPARA SURTIDO ===================== */
+(()=>{
+const $=id=>document.getElementById(id);
+const nm=s=>String(s??'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+const ek=v=>String(v??'').trim().replace(/\.0+$/,'').replace(/^0+/,'');
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const D={1:null,2:null},NAME={1:'Tienda 1',2:'Tienda 2'};let rows=[],sortK=null;
+const wsrc=document.getElementById('fastsrc').textContent+`
+onmessage=async e=>{const {buf,opts}=e.data;const P=(p,t)=>postMessage({p,t});
+ try{const aoa=await readTable(buf,opts,P);postMessage({aoa})}catch(x){postMessage({err:x.message})}};`;
+let fastMain=false;
+async function readAoa(buf,opts,prog){
+ const main=async()=>{if(typeof readTable==='undefined'&&!fastMain){(0,eval)(document.getElementById('fastsrc').textContent);fastMain=true}
+  return readTable(buf,opts,(p,t)=>prog(p,t+' '+p+'%'))};
+ let w;try{w=new Worker(URL.createObjectURL(new Blob([wsrc],{type:'text/javascript;charset=utf-8'})))}catch(x){return main()}
+ return new Promise((res,rej)=>{w.onmessage=m=>{const d=m.data;if(d.t){prog(d.p,d.t+' '+d.p+'%');return}w.terminate();d.err?rej(new Error(d.err)):res(d.aoa)};
+  w.onerror=e=>{e.preventDefault&&e.preventDefault();w.terminate();main().then(res,rej)};w.postMessage({buf,opts})});
+}
+const OPTS={headerKeys:['ean','id'],keep:['id','ean','descripcion articulo','car.planif.nec.','stock disp','seccion','descripcion familia','codigo seccion','codigo familia']};
+for(const k of [1,2]){const el=$('cz'+k),inp=el.querySelector('input'),pb=el.querySelector('.pb'),fill=pb.querySelector('i'),pt=el.querySelector('.pt');
+ const prog=(p,t)=>{pb.style.display='block';pt.style.display='block';if(p!=null)fill.style.width=p+'%';pt.textContent=t};
+ const hide=()=>{pb.style.display='none';pt.style.display='none'};
+ const load=async file=>{
+  if(!/\.xlsx?$/i.test(file.name)){el.querySelector('.fn').textContent='⚠ Tiene que ser un Excel (.xls o .xlsx)';return}
+  if(/\.xls$/i.test(file.name))file=new File([file],file.name.replace(/\.xls$/i,'.xlsx'));
+  el.classList.add('loading');el.classList.remove('ok');D[k]=null;$('cgo').disabled=true;
+  el.querySelector('.fn').textContent=file.name+' · '+(file.size/1048576).toFixed(1)+' MB';prog(0,'Leyendo archivo… 0%');
+  try{
+   const buf=await new Promise((res,rej)=>{const r=new FileReader();r.onprogress=e=>{if(e.lengthComputable)prog(Math.round(e.loaded/e.total*40),'Leyendo archivo… '+Math.round(e.loaded/e.total*100)+'%')};
+    r.onload=()=>res(r.result);r.onerror=()=>rej(new Error('No se pudo leer el archivo'));r.readAsArrayBuffer(file)});
+   const aoa=await readAoa(buf,OPTS,prog);const h=aoa[0].map(nm),ix=n=>h.indexOf(n);
+   const c={id:ix('id'),ean:ix('ean'),des:ix('descripcion articulo'),sur:ix('car.planif.nec.'),stk:ix('stock disp'),sec:ix('seccion'),fam:ix('descripcion familia')};
+   const m=new Map();
+   for(let i=1;i<aoa.length;i++){const r=aoa[i],e=ek(r[c.ean]);if(!e)continue;
+    const o=m.get(e);const st=+r[c.stk]||0;
+    if(o){o.stk+=st}else m.set(e,{id:String(r[c.id]??'').replace(/\D/g,''),ean:String(r[c.ean]??'').replace(/\D/g,''),des:r[c.des]??'',sur:r[c.sur]??'',stk:st,sec:String(r[c.sec]??'').trim(),fam:String(r[c.fam]??'').trim()})}
+   D[k]=m;const t=file.name.match(/_T(\d{5,})/i);NAME[k]=t?'T'+t[1]:'Tienda '+k;
+   prog(100,'Completado 100%');setTimeout(hide,700);el.classList.add('ok');el.querySelector('.fn').textContent='✔ '+file.name+' · '+m.size+' artículos';
+  }catch(x){hide();el.querySelector('.fn').textContent='⚠ '+x.message}
+  el.classList.remove('loading');$('cgo').disabled=!(D[1]&&D[2]);
+ };
+ el.onclick=()=>inp.click();inp.onclick=e=>e.stopPropagation();inp.onchange=()=>{inp.files[0]&&load(inp.files[0]);inp.value=''};
+ el.ondragover=e=>{e.preventDefault();el.classList.add('over')};el.ondragleave=()=>el.classList.remove('over');
+ el.ondrop=e=>{e.preventDefault();el.classList.remove('over');e.dataTransfer.files[0]&&load(e.dataTransfer.files[0])};
+}
+/* ---- selector múltiple ---- */
+const MS={};
+function msel(id,vals,onch){const box=$(id);const prev=MS[id]||new Set();MS[id]=new Set([...prev].filter(v=>vals.includes(v)));
+ const lab=()=>MS[id].size?MS[id].size===1?[...MS[id]][0]:MS[id].size+' seleccionadas':'Todas';
+ box.innerHTML=`<button type="button" class="msb">${esc(lab())} ▾</button><div class="msp hidden"><div class="msa"><a data-a="1">Todas</a> · <a data-a="0">Ninguna</a></div>${vals.map(v=>`<label><input type="checkbox" value="${esc(v)}" ${MS[id].has(v)?'checked':''}> ${esc(v)}</label>`).join('')}</div>`;
+ const b=box.querySelector('.msb'),p=box.querySelector('.msp');
+ b.onclick=e=>{e.stopPropagation();document.querySelectorAll('.msp').forEach(x=>{if(x!==p)x.classList.add('hidden')});p.classList.toggle('hidden')};
+ p.onclick=e=>e.stopPropagation();
+ p.querySelectorAll('input').forEach(c=>c.onchange=()=>{c.checked?MS[id].add(c.value):MS[id].delete(c.value);b.textContent=lab()+' ▾';onch()});
+ p.querySelectorAll('[data-a]').forEach(a=>a.onclick=()=>{MS[id]=new Set(a.dataset.a==='1'?vals:[]);p.querySelectorAll('input').forEach(c=>c.checked=MS[id].has(c.value));b.textContent=lab()+' ▾';onch()});
+}
+document.addEventListener('click',()=>document.querySelectorAll('.msp').forEach(x=>x.classList.add('hidden')));
+const uniq=a=>[...new Set(a.filter(Boolean))].sort((x,y)=>x.localeCompare(y,'es'));
+function fillFam(){const s=MS.csec;const v=uniq(rows.filter(r=>!s||!s.size||s.has(r.sec)).map(r=>r.fam));msel('cfam',v,renderC)}
+$('cgo').onclick=()=>{
+ const keys=new Set([...D[1].keys(),...D[2].keys()]);
+ rows=[...keys].map(k=>{const a=D[1].get(k),b=D[2].get(k),o=a||b;
+  return {id:o.id,ean:o.ean,des:o.des,sur:(a&&a.sur)||(b&&b.sur)||'',sec:o.sec||(b&&b.sec)||'',fam:o.fam||(b&&b.fam)||'',in1:!!a,in2:!!b,s1:a?a.stk:null,s2:b?b.stk:null}});
+ msel('csec',uniq(rows.map(r=>r.sec)),()=>{fillFam();renderC()});fillFam();
+ $('cload').classList.add('hidden');$('cres').classList.remove('hidden');renderC();
+};
+$('cback').onclick=()=>{$('cres').classList.add('hidden');$('cload').classList.remove('hidden')};
+['cwho','cstk'].forEach(i=>$(i).onchange=renderC);$('cq').oninput=renderC;
+const has=(r,k)=>{const st=$('cstk').checked;return k===1?r.in1&&(!st||r.s1>0):r.in2&&(!st||r.s2>0)};
+function base(){const s=MS.csec,f=MS.cfam,q=nm($('cq').value);
+ return rows.filter(r=>(!s||!s.size||s.has(r.sec))&&(!f||!f.size||f.has(r.fam))&&(!q||nm(r.id+' '+r.ean+' '+r.des).includes(q)))}
+function view(){const w=$('cwho').value;let v=base().filter(r=>w==='all'||(w==='both'?has(r,1)&&has(r,2):w==='only1'?has(r,1)&&!has(r,2):has(r,2)&&!has(r,1)));
+ if(sortK){const d=sortK[0]==='-'?-1:1,k=sortK.replace('-','');v=[...v].sort((a,b)=>{const p=a[k],o=b[k];return(typeof p==='number'&&typeof o==='number'?p-o:String(p??'').localeCompare(String(o??''),'es',{numeric:true}))*d})}
+ return v}
+const id10=id=>id?String(id).slice(-10).padStart(10,'0'):'';
+function renderC(){const v=view();
+ const C=[['id','ID'],['ean','EAN'],['des','Descripción Artículo'],['sur','Surtido'],['sec','Sección'],['fam','Familia'],['s1','Stock '+NAME[1]],['s2','Stock '+NAME[2]]];
+ $('cth').innerHTML='<tr>'+C.map(c=>`<th data-k="${c[0]}">${esc(c[1])}${sortK===c[0]?' ▲':sortK==='-'+c[0]?' ▼':''}</th>`).join('')+'</tr>';
+ $('cth').querySelectorAll('th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;sortK=sortK===k?'-'+k:k;renderC()});
+ const sc=(x,inn)=>!inn?'<td class="num nou">No lo tiene</td>':`<td class="num${x<=0?' nd':''}">${x}</td>`;
+ $('ctb').innerHTML=v.slice(0,3000).map(r=>`<tr><td>${id10(r.id)}</td><td>${esc(r.ean)}</td><td class="wrap">${esc(r.des)}</td><td>${esc(r.sur)}</td><td>${esc(r.sec)}</td><td class="wrap">${esc(r.fam)}</td>${sc(r.s1,r.in1)}${sc(r.s2,r.in2)}</tr>`).join('');
+ const b=base();$('ccnt').textContent=v.length+' artículos'+(v.length>3000?' (se muestran 3000)':'')+' · solo '+NAME[1]+': '+b.filter(r=>has(r,1)&&!has(r,2)).length+' · solo '+NAME[2]+': '+b.filter(r=>has(r,2)&&!has(r,1)).length;
+}
+/* ---- reporte con imágenes ---- */
+async function rep(k){const other=k===1?2:1;const v=base().filter(r=>has(r,k)&&!has(r,other));
+ if(!v.length){$('ccnt').textContent='No hay artículos que tenga '+NAME[k]+' y no '+NAME[other]+' con estos filtros';return}
+ const btn=$('crep'+k),t0=btn.textContent;btn.disabled=true;btn.textContent='Preparando fotos…';
+ const pc={},pn=r=>{const t=String(parseInt(r.id,10)||'');return /1000$/.test(t)?t.slice(0,-4):t};
+ await window.BOT.photosFor(v.map(pn),(n,u)=>pc[n]=u);btn.disabled=false;btn.textContent=t0;
+ const card=r=>{const n=pn(r);const s=k===1?r.s1:r.s2;
+  return `<div class="pc"><div class="ptit">${esc(r.des)}</div>
+   <div class="pl"><div class="u">${esc(r.sec)}</div><div class="u" style="white-space:normal">${esc(r.fam)}</div>${r.sur?`<div class="u">Surtido: <b>${esc(r.sur)}</b></div>`:''}<div class="u nou">No está en ${NAME[other]}</div></div>
+   <div class="pr"><img src="${pc[n]||window.BOT.photoURL(n)}" onerror="this.style.visibility='hidden'"><div class="stk">Stock ${NAME[k]}: <b>${s}</b></div></div>
+   <div class="pf">ID ${id10(r.id)}<div class="bcw">${window.BOT.ean13svg(r.ean)}</div></div></div>`};
+ const pages=[];for(let i=0;i<v.length;i+=14)pages.push(v.slice(i,i+14));
+ const fs=[MS.csec&&MS.csec.size?[...MS.csec].join(', '):'',MS.cfam&&MS.cfam.size?[...MS.cfam].join(', '):''].filter(Boolean).join(' · ');
+ $('pgsz').textContent='@media print{@page{size:A4 portrait;margin:8mm}}';
+ $('printArea').innerHTML=`<h2 class="ch">Compara Surtido · Tiene ${NAME[k]} y no ${NAME[other]}${fs?' · '+esc(fs):''} · ${v.length} artículos · ${new Date().toLocaleString('es-ES')}</h2>`+pages.map(p=>'<div class="cards">'+p.map(card).join('')+'</div>').join('');
+ const imgs=[...$('printArea').querySelectorAll('img')];
+ await Promise.race([Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r}))),new Promise(r=>setTimeout(r,10000))]);
+ window.print()}
+$('crep1').onclick=()=>rep(1);$('crep2').onclick=()=>rep(2);
 })();
 </script>
 </body>
