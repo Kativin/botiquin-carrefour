@@ -22,6 +22,14 @@ body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);c
 .tile b{display:block;font-size:16px}.tile small{color:var(--mut);font-size:12.5px}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;z-index:50}.modal.hidden{display:none}
 .mbox{background:#fff;border-radius:16px;padding:22px;width:min(520px,92vw);box-shadow:0 20px 50px rgba(0,0,0,.25)}.mbox h3{margin:0 0 14px}
+.mbox.mwide{width:min(980px,96vw);max-height:92vh;overflow:auto}
+.sall{padding:14px;margin:6px 0 10px;cursor:pointer}.sall .fn{margin-top:4px}
+.sgrp{margin-top:10px}.sgrp h4{margin:0 0 6px;font-size:13px;color:#1e3a8a}
+.sgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.sz{border:1.5px dashed #c5cde0;border-radius:10px;padding:8px 10px;cursor:pointer;font-size:12px;background:#fff;transition:.15s;position:relative}
+.sz:hover,.sz.over{border-color:var(--pri);background:#eef3ff}.sz.ok{border-style:solid;border-color:var(--grn);background:#f0fdf4}.sz.err{border-color:var(--red);background:#fef2f2}
+.sz b{display:block;font-size:12.5px;color:var(--ink)}.sz .st{color:var(--mut);font-size:11px;margin-top:2px;min-height:14px}.sz.ok .st{color:#15803d}
+.sz .bar2{height:4px;background:#e3e8f3;border-radius:3px;overflow:hidden;margin-top:4px;display:none}.sz .bar2 i{display:block;height:100%;width:0;background:var(--pri)}
 .tile{position:relative}.tile .ver .pop{display:none;position:absolute;top:24px;right:0;width:250px;background:#1d2433;color:#fff;text-align:left;font-weight:400;font-size:12px;border-radius:10px;padding:10px 12px;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:5;cursor:default}
 .tile .ver .pop b{display:block;margin-bottom:6px}.tile .ver .pop i{display:block;font-style:normal;padding:2px 0 2px 12px;position:relative}.tile .ver .pop i:before{content:'•';position:absolute;left:0}
 .tile .ver:hover .pop{display:block}
@@ -188,12 +196,15 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 <button id="cfg" class="hbtn" title="Configuración" style="margin-left:auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
 <button class="btn" id="reload" style="margin-left:10px;display:none;background:#fff;color:#1e40af">📂 Cargar documentos</button>
 </header>
-<div id="cfgm" class="modal hidden"><div class="mbox">
+<div id="cfgm" class="modal hidden"><div class="mbox mwide">
  <h3>⚙ Configuración</h3>
- <div class="f" style="color:var(--ink);font-size:14px;font-weight:600">Carpeta de fotos</div>
- <p class="info" id="cfgfoto">Sin carpeta configurada: las fotos se muestran desde internet pero no se guardan.</p>
- <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cfgpick">📁 Elegir carpeta de fotos</button><button class="btn sec" id="cfgclr">Quitar</button></div>
- <p class="info">Buscador v2 y Listado Outlet buscan primero aquí la foto (ID.jpg) y, si la descargan de internet, la guardan aquí para no volver a descargarla.</p>
+ <div class="f" style="color:var(--ink);font-size:14px;font-weight:600">Carpeta del Botiquín</div>
+ <p class="info" id="cfgfoto">Sin carpeta: elige una vez <b>T:\!RafaBazar\Botiquín Carrefour</b>.</p>
+ <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cfgpick">📁 Elegir carpeta del Botiquín</button></div>
+ <p class="info">Dentro se usan las carpetas <b>Foto</b> (fotos de artículos, ID.jpg) y <b>Surtidos</b> (copias optimizadas). Se crean solas si no existen.</p>
+ <div class="f" style="color:var(--ink);font-size:14px;font-weight:600;margin-top:16px">Surtidos por sección</div>
+ <div class="zone sall" id="sall"><b>⬇ Arrastra aquí uno o varios Report_Surtido</b><div class="fn">Se colocan solos en su sección según su «Código Sección». También puedes pulsar en cada sección.</div><input type="file" accept=".xlsx,.xls" multiple></div>
+ <div id="sgrid"></div>
  <div class="f" style="color:var(--ink);font-size:14px;font-weight:600;margin-top:16px">Reportes online (Reporte Mapeo)</div>
  <div style="display:flex;gap:8px;align-items:center;margin-top:6px"><button class="btn sec" id="cfgtest">Probar conexión</button><span class="info" id="cfgtres" style="margin:0"></span></div>
  <p class="info">Configurado de serie: el móvil y el ordenador comparten los reportes sin hacer nada.</p>
@@ -800,7 +811,7 @@ try{surInfo(JSON.parse(localStorage.getItem('bot_sur')))}catch(x){surInfo(null)}
 // el último surtido queda guardado en el navegador: se puede buscar nada más abrir, sin reconectar la carpeta
 kv('index').then(async ix=>{if(ix&&ix.ix&&!index){index=ix;surInfo(index);$('bgo').disabled=false;return}
  // si el navegador no lo tiene, se recupera la copia de la carpeta de ⚙ (sin pedir permiso al abrir)
- try{const f=await kv('fotodir');if(!f||await f.queryPermission({mode:'readwrite'})!=='granted'||index)return;
+ try{const f=await surtDir(false);if(!f||index)return;
   const file=await (await f.getFileHandle(COPY)).getFile();z.classList.add('loading');prog(20,'Abriendo surtido guardado…');
   const d=await runWorker(await file.arrayBuffer(),false,prog);index=buildIndex(d.aoa);saveMeta();prog(100,'Completado 100%');setTimeout(hideP,700);
   surInfo(index,'<br>✔ Recuperado de la carpeta <b>'+f.name+'</b>');$('bgo').disabled=false}catch(x){hideP()}finally{z.classList.remove('loading')}}).catch(()=>{});
@@ -823,14 +834,14 @@ async function loadFile(file){
    r.onprogress=e=>{if(e.lengthComputable)prog(Math.round(e.loaded/e.total*40),'Leyendo archivo… '+Math.round(e.loaded/e.total*100)+'%')};
    r.onload=()=>res(r.result);r.onerror=()=>rej(new Error('No se pudo leer el archivo'));r.readAsArrayBuffer(file)});
   prog(40,'Procesando Excel…');
-  const foto=await fotoDir();
+  const foto=await surtDir();
   const d=await runWorker(buf,!!foto,prog);
   index=buildIndex(d.aoa);
   saveMeta();
   let extra='<br>✔ Surtido guardado en este navegador';
   if(foto&&d.copy){try{const w=await (await foto.getFileHandle(COPY,{create:true})).createWritable();await w.write(d.copy);await w.close();
     extra='<br>✔ Copia guardada en la carpeta <b>'+foto.name+'</b> ('+COPY+', '+(d.copy.byteLength/1048576).toFixed(1)+' MB)'}catch(x){extra+='<br>⚠ No se pudo guardar en la carpeta: '+x.message}}
-  else if(!foto)extra+='<br>Configura la carpeta en ⚙ del inicio para guardar también una copia allí';
+  else if(!foto)extra+='<br>Elige la carpeta del Botiquín en ⚙ para guardar también una copia en Surtidos';
   prog(100,'Completado 100%');setTimeout(hideP,700);
   z.querySelector('.fn').textContent='✔ '+file.name;
   surInfo(index,extra);
@@ -874,10 +885,15 @@ function renderB(){const t=tableHTML(true);$('bth').innerHTML=t.th;$('btb').inne
 
 /* ---- fotos: primero carpeta Foto, si no, web y se guarda copia ---- */
 /* Foto: primero carpeta Foto (junto al HTML); si no está, se descarga de la web y se guarda como Foto/<n>.jpg */
-async function fotoDir(){
- if(fsOK){try{const f=await kv('fotodir');if(f){let p=await f.queryPermission({mode:'readwrite'});if(p!=='granted')try{p=await f.requestPermission({mode:'readwrite'})}catch(x){}if(p==='granted')return f}}catch(x){}}
- return null; // sin carpeta configurada en ⚙: las fotos se muestran desde internet sin guardarse
-}
+/* carpeta del Botiquín (T:\!RafaBazar\Botiquín Carrefour): se elige una vez y dentro van Foto y Surtidos */
+async function baseDir(ask){if(!fsOK)return null;let b=null;try{b=await kv('basedir')}catch(x){}
+ if(!b){try{const f=await kv('fotodir');if(f)b=f}catch(x){}} // compatibilidad con la carpeta de fotos antigua
+ if(!b)return null;let p=await b.queryPermission({mode:'readwrite'});
+ if(p!=='granted'&&ask!==false){try{p=await b.requestPermission({mode:'readwrite'})}catch(x){}}
+ return p==='granted'?b:null}
+async function subDir(name,ask){const b=await baseDir(ask);if(!b)return null;try{return await b.getDirectoryHandle(name,{create:true})}catch(x){return null}}
+const fotoDir=ask=>subDir('Foto',ask);
+const surtDir=ask=>subDir('Surtidos',ask);
 async function photoFor(n,foto){
  if(!n)return '';if(photoCache[n])return photoCache[n];
  let blob=null;
@@ -944,20 +960,66 @@ async function printRep(withImg){
  window.print();
 }
 /* ---- configuración: carpeta de fotos ---- */
-const cfgShow=async()=>{let f=null;try{f=await kv('fotodir')}catch(x){}
- $('cfgfoto').innerHTML=f?'📁 Carpeta de fotos: <b>'+f.name+'</b>':'Sin carpeta configurada: las fotos se muestran desde internet pero no se guardan.'};
+const cfgShow=async()=>{let f=null;try{f=await kv('basedir')}catch(x){}
+ $('cfgfoto').innerHTML=f?'📁 Carpeta del Botiquín: <b>'+f.name+'</b> (Foto y Surtidos dentro)':'Sin carpeta: pulsa el botón y elige una vez <b>T:\\!RafaBazar\\Botiquín Carrefour</b>.';renderSurt()};
 $('cfg').onclick=()=>{$('cfgm').classList.remove('hidden');cfgShow()};
 $('cfgclose').onclick=()=>$('cfgm').classList.add('hidden');
 $('cfgtest').onclick=async()=>{
  $('cfgtres').textContent='Probando…';try{await window.BOTMAP_TEST();$('cfgtres').innerHTML='<span style="color:var(--grn)">✔ Conexión correcta</span>';window.dispatchEvent(new Event('botcfg'))}catch(x){$('cfgtres').innerHTML='<span style="color:var(--red)">⚠ '+x.message+'</span>'}};
 $('cfgm').onclick=e=>{if(e.target.id==='cfgm')$('cfgm').classList.add('hidden')};
 $('cfgpick').onclick=async()=>{if(!fsOK){$('cfgfoto').textContent='⚠ Este navegador no permite elegir carpetas: usa Chrome o Edge.';return}
- try{const h=await showDirectoryPicker({id:'botfoto',mode:'readwrite'});await kv('fotodir',h);cfgShow()}catch(x){if(x.name!=='AbortError')$('cfgfoto').textContent='⚠ '+x.message}};
-$('cfgclr').onclick=async()=>{try{await kv('fotodir',null)}catch(x){}cfgShow()};
-const savedSurt=async ask=>{if(!fsOK)return null;const f=await kv('fotodir').catch(()=>null);if(!f)return null;
- let p=await f.queryPermission({mode:'readwrite'});if(p!=='granted'){if(!ask){try{return {perm:true}}catch(x){}}p=await f.requestPermission({mode:'readwrite'})}
- if(p!=='granted')return null;try{return {file:await (await f.getFileHandle(COPY)).getFile()}}catch(x){return null}};
-window.BOT={savedSurt,photosFor,photoCache,photoURL,ean13svg,id10:id=>id?String(id).slice(-10).padStart(10,'0'):''};
+ try{const h=await showDirectoryPicker({id:'botbase',mode:'readwrite'});await kv('basedir',h);await h.getDirectoryHandle('Foto',{create:true});await h.getDirectoryHandle('Surtidos',{create:true});cfgShow()}catch(x){if(x.name!=='AbortError')$('cfgfoto').textContent='⚠ '+x.message}};
+const savedSurt=async ask=>{if(!fsOK)return null;const b=await baseDir(false);
+ if(!b){const h=await kv('basedir').catch(()=>null)||await kv('fotodir').catch(()=>null);if(!h)return null;if(!ask)return {perm:true};if(!await baseDir(true))return null}
+ const d=await surtDir(false);if(!d)return null;try{return {file:await (await d.getFileHandle(COPY)).getFile()}}catch(x){return null}};
+/* ---- surtidos por sección (⚙) ---- */
+const SURT=[{"k": "pgc", "n": "PGC", "s": [["10", "Líquidos"], ["11", "DPH"], ["13", "Parafarmacia"], ["14", "Alimentación Seca"], ["15", "PLS"]]}, {"k": "fre", "n": "Frescos", "s": [["20", "Charcutería"], ["21", "Pescadería"], ["22", "Frutería"], ["23", "Panadería"], ["24", "Carnicería"], ["26", "Platos Preparados"]]}, {"k": "baz", "n": "Bazar", "s": [["*", "Sector completo"], ["30", "Bricolaje"], ["31", "Casa Hogar"], ["32", "Cultura"], ["33", "Deportes Juguetes"], ["34", "Jardín"], ["35", "Automóvil"]]}, {"k": "ele", "n": "Electrofoto", "s": [["*", "Sector completo"], ["40", "Gran Aparato"], ["41", "PAE"], ["42", "Fotografía"], ["43", "Sonido"], ["44", "Imagen"], ["45", "Ofimática"]]}, {"k": "tex", "n": "Textil", "s": [["60", "Zapatos"], ["61", "Bebé Puericultura"], ["62", "Niño"], ["63", "Mujer"], ["64", "Hombre"], ["65", "Hogar"], ["67", "Permanente"]]}];
+const fileFor=(g,c,n)=>c==='*'?'Surtido_'+g.n+'_completo.xlsx':'Surtido_'+c+'_'+n.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]+/g,'_')+'.xlsx';
+const zid=(g,c)=>g.k+'_'+(c==='*'?'all':c);
+function renderSurt(){kv('surts').catch(()=>null).then(m=>{m=m||{};
+ $('sgrid').innerHTML=SURT.map(g=>`<div class="sgrp"><h4>${g.n}</h4><div class="sgr">${g.s.map(([c,n])=>{const z=m[zid(g,c)];
+  return `<div class="sz${z?' ok':''}" data-z="${zid(g,c)}"><b>${c==='*'?'':c+' · '}${n}</b><div class="st">${z?'✔ '+(z.date||'')+' · '+z.n+' art.':'Pulsa o arrastra'}</div><div class="bar2"><i></i></div><input type="file" accept=".xlsx,.xls" style="display:none"></div>`}).join('')}</div></div>`).join('');
+ $('sgrid').querySelectorAll('.sz').forEach(el=>{const inp=el.querySelector('input');
+  el.onclick=()=>inp.click();inp.onclick=e=>e.stopPropagation();inp.onchange=()=>{inp.files[0]&&loadSurt(inp.files[0],el.dataset.z);inp.value=''};
+  el.ondragover=e=>{e.preventDefault();el.classList.add('over')};el.ondragleave=()=>el.classList.remove('over');
+  el.ondrop=e=>{e.preventDefault();e.stopPropagation();el.classList.remove('over');e.dataTransfer.files[0]&&loadSurt(e.dataTransfer.files[0],el.dataset.z)}})
+ }).catch(()=>{})}
+const zoneInfo=id=>{for(const g of SURT)for(const [c,n] of g.s)if(zid(g,c)===id)return {g,c,n};return null};
+let surtQ=Promise.resolve();
+function loadSurt(file,target){surtQ=surtQ.then(()=>doSurt(file,target)).catch(()=>{});return surtQ}
+async function doSurt(file,target){
+ const msgAll=t=>$('sall').querySelector('.fn').innerHTML=t;
+ if(!/report_surt/i.test(file.name)){msgAll('⚠ '+file.name+': el nombre debe contener «REPORT_SURT»');return}
+ if(/\.xls$/i.test(file.name))file=new File([file],file.name.replace(/\.xls$/i,'.xlsx'));
+ let el=target?$('sgrid').querySelector(`[data-z="${target}"]`):null;
+ const show=(p,t)=>{if(!el){msgAll(esc(file.name)+' · '+t);return}el.classList.remove('ok','err');const b=el.querySelector('.bar2');b.style.display='block';if(p!=null)b.querySelector('i').style.width=p+'%';el.querySelector('.st').textContent=t};
+ try{
+  const dir=await surtDir();if(!dir)throw new Error('elige antes la carpeta del Botiquín');
+  show(5,'Leyendo…');const buf=await file.arrayBuffer();
+  const d=await runWorker(buf,true,(p,t)=>show(p,t.replace(/ \d+%$/,'')+' '+p+'%'));
+  const h=d.aoa[0].map(x=>String(x).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim());
+  const ci=h.indexOf('codigo seccion'),fi=h.indexOf('fecha de precio');
+  const codes=[...new Set(d.aoa.slice(1).map(r=>String(r[ci]??'').trim().replace(/^0+(?=\d)/,'')).filter(Boolean))];
+  let date='';for(let i=1;i<d.aoa.length&&!date;i++){const v=d.aoa[i][fi];if(v!==''&&v!=null)date=String(v)}
+  // dónde va: la sección elegida, o la que diga el propio archivo
+  if(!target){if(codes.length===1){for(const g of SURT)for(const [c] of g.s)if(c===codes[0])target=zid(g,c)}
+   else if(codes.length>1){const sec=[...new Set(codes.map(c=>c[0]))];if(sec.length===1){const g=SURT.find(g=>g.s.some(([c])=>c==='*')&&g.s.some(([c])=>c[0]===sec[0]));if(g)target=zid(g,'*')}}
+   if(!target)throw new Error('no sé en qué sección va (Código Sección: '+(codes.join(', ')||'vacío')+'). Pulsa en su casilla para cargarlo ahí');
+   el=$('sgrid').querySelector(`[data-z="${target}"]`)}
+  const zi=zoneInfo(target);
+  if(zi.c!=='*'&&codes.length&&!codes.includes(zi.c))throw new Error('el archivo es de la sección '+codes.join(', ')+', no de la '+zi.c);
+  const name=fileFor(zi.g,zi.c,zi.n);
+  const w=await (await dir.getFileHandle(name,{create:true})).createWritable();await w.write(d.copy);await w.close();
+  const m=(await kv('surts').catch(()=>null))||{};m[target]={date,n:d.aoa.length-1,file:name,t:Date.now()};await kv('surts',m);
+  renderSurt();msgAll('✔ '+esc(file.name)+' guardado como <b>Surtidos/'+name+'</b>'+(date?' · '+date:''));
+ }catch(x){if(el){el.classList.add('err');el.querySelector('.bar2').style.display='none';el.querySelector('.st').textContent='⚠ '+x.message}msgAll('⚠ '+esc(file.name)+': '+x.message)}
+}
+{const z=$('sall'),inp=z.querySelector('input');z.onclick=()=>inp.click();inp.onclick=e=>e.stopPropagation();
+ inp.onchange=()=>{[...inp.files].forEach(f=>loadSurt(f,null));inp.value=''};
+ z.ondragover=e=>{e.preventDefault();z.classList.add('over')};z.ondragleave=()=>z.classList.remove('over');
+ z.ondrop=e=>{e.preventDefault();z.classList.remove('over');[...e.dataTransfer.files].forEach(f=>loadSurt(f,null))}}
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+window.BOT={savedSurt,surtDir,photosFor,photoCache,photoURL,ean13svg,id10:id=>id?String(id).slice(-10).padStart(10,'0'):''};
 $('bprint').onclick=()=>printRep(false);
 $('bprinti').onclick=()=>printRep(true);
 })();
