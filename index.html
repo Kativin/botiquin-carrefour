@@ -30,6 +30,7 @@ body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);c
 .sz:hover,.sz.over{border-color:var(--pri);background:#eef3ff}.sz.ok{border-style:solid;border-color:var(--grn);background:#f0fdf4}.sz.err{border-color:var(--red);background:#fef2f2}
 .sz b{display:block;font-size:12.5px;color:var(--ink)}.sz .st{color:var(--mut);font-size:11px;margin-top:2px;min-height:14px}.sz.ok .st{color:#15803d}
 .sz .bar2{height:4px;background:#e3e8f3;border-radius:3px;overflow:hidden;margin-top:4px;display:none}.sz .bar2 i{display:block;height:100%;width:0;background:var(--pri)}
+.spick{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:10px}.spick select{max-width:100%;padding:7px 10px;border:1px solid var(--bd);border-radius:8px;font-size:13px;background:#fff;cursor:pointer}
 .tile{position:relative}.tile .ver .pop{display:none;position:absolute;top:24px;right:0;width:250px;background:#1d2433;color:#fff;text-align:left;font-weight:400;font-size:12px;border-radius:10px;padding:10px 12px;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:5;cursor:default}
 .tile .ver .pop b{display:block;margin-bottom:6px}.tile .ver .pop i{display:block;font-style:normal;padding:2px 0 2px 12px;position:relative}.tile .ver .pop i:before{content:'•';position:absolute;left:0}
 .tile .ver:hover .pop{display:block}
@@ -212,9 +213,9 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 </div></div>
 <section id="menu">
  <div class="grid">
-  <div class="tile" data-go="dif"><span class="ver">v1.5<span class="pop"><b>Novedades v1.5</b><i>Carga solo el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Solo es obligatorio el documento 1</i><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
-  <div class="tile" data-go="bus"><span class="ver">v3.0<span class="pop"><b>Novedades v3.0</b><i>El surtido se guarda también en la carpeta de ⚙ y se recupera desde ahí</i><i>Imágenes más grandes en las tarjetas</i><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
-  <div class="tile" data-go="out"><span class="ver">v2.1<span class="pop"><b>Novedades v2.1</b><i>Si un artículo no está en el surtido, el stock sale de UNIDADES_STOCK del listado</i><i>1ª página con 14 tarjetas: la cabecera ocupa el hueco de una fila</i><i>Carga sola el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
+  <div class="tile" data-go="dif"><span class="ver">v1.6<span class="pop"><b>Novedades v1.6</b><i>Desplegable para elegir un surtido guardado en ⚙</i><i>Carga solo el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Solo es obligatorio el documento 1</i><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
+  <div class="tile" data-go="bus"><span class="ver">v3.1<span class="pop"><b>Novedades v3.1</b><i>Desplegable para elegir un surtido guardado en ⚙; fotos en Botiquín/Foto</i><i>El surtido se guarda también en la carpeta de ⚙ y se recupera desde ahí</i><i>Imágenes más grandes en las tarjetas</i><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
+  <div class="tile" data-go="out"><span class="ver">v2.2<span class="pop"><b>Novedades v2.2</b><i>Desplegable para elegir un surtido guardado en ⚙; fotos en Botiquín/Foto</i><i>Si un artículo no está en el surtido, el stock sale de UNIDADES_STOCK del listado</i><i>1ª página con 14 tarjetas: la cabecera ocupa el hueco de una fila</i><i>Carga sola el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
   <div class="tile" data-go="map"><span class="ver">v2.9<span class="pop"><b>Novedades v2.9</b><i>Avisa si el script de Google no está actualizado para borrar</i><i>Reportes online configurados de serie en todos los dispositivos</i><i>Eliminar reportes del historial (también online)</i><i>Segundo método de conexión para ordenadores con cuenta de Google de empresa</i><i>Conexión con Google más compatible con iPhone (requiere actualizar el script)</i><i>Acepta direcciones de cuentas de empresa y explica el error</i><i>Si no hay conexión, el reporte se guarda y se sube después</i><i>Botón «Probar conexión» en ⚙</i><i>En el móvil la pantalla ya no se amplía al escribir</i><i>Pantalla más limpia para el móvil: todo en un paso</i><i>Generar reporte abajo; al pulsarlo se limpian los campos</i><i>Quitada la ubicación y la lectura del texto</i><i>Generar reporte vacía la lista y lo guarda (online si está configurado)</i><i>Reportes en el ordenador: marcar Hecho e imprimir</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3"/></svg></div><b>Reporte Mapeo</b><small>Captura QR de ubicaciones y reporte para chequear</small></div>
   <div class="tile" data-go="cmp"><span class="ver">v1.4<span class="pop"><b>Novedades v1.4</b><i>Imagen centrada entre la designación y el stock</i><i>Imágenes más grandes en el reporte</i><i>Botón para ordenar en cada columna</i><i>Columnas «Stock Tienda 1» y «Stock Tienda 2»</i><i>Filtro múltiple por surtido</i><i>Compara dos surtidos (.xls o .xlsx)</i><i>Filtros múltiples por sección y familia</i><i>Reportes con imágenes y códigos de barras de lo que tiene una tienda y no la otra</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 9h4M12 7l2 2-2 2M14 15h-4M12 13l-2 2 2 2"/></svg></div><b>Compara Surtido</b><small>Diferencias de surtido entre dos tiendas</small></div>
  </div>
@@ -522,6 +523,17 @@ function surSummary(aoa){const N=x=>String(x??'').normalize('NFD').replace(/[\u0
  const h=aoa[0].map(N),fi=h.indexOf('fecha de precio'),si=h.indexOf('seccion');let date='';const sec=new Set();
  for(let i=1;i<aoa.length;i++){const r=aoa[i];if(!date&&fi>=0&&r[fi]!=='')date=String(r[fi]);if(si>=0&&r[si]!=='')sec.add(String(r[si]).trim())}
  return (date?'Fecha '+date:'')+(sec.size?(date?' · ':'')+'Secciones: '+[...sec].sort().join(', '):'')}
+/* desplegable con los surtidos guardados en la carpeta Surtidos (⚙) */
+function surtPicker(zoneEl,onPick){
+ const w=document.createElement('div');w.className='spick';w.onclick=e=>e.stopPropagation();
+ w.innerHTML='<select><option value="">📦 Usar un surtido guardado…</option></select><span class="info" style="margin:0"></span>';
+ zoneEl.appendChild(w);const sel=w.querySelector('select'),info=w.querySelector('span');
+ const fill=async()=>{if(!window.BOT||!BOT.listSurts)return;const L=await BOT.listSurts().catch(()=>[]);
+  sel.innerHTML='<option value="">'+(L.length?'📦 Usar un surtido guardado ('+L.length+')…':'📦 No hay surtidos guardados (cárgalos en ⚙)')+'</option>'+L.map(x=>`<option value="${x.file}">${x.label}${x.date?' · '+x.date:''}${x.n?' · '+x.n+' art.':''}</option>`).join('');sel.disabled=!L.length};
+ sel.onchange=async()=>{const f=sel.value;if(!f)return;const label=sel.options[sel.selectedIndex].text;info.textContent='Abriendo…';
+  try{const file=await BOT.getSurt(f);info.textContent='';onPick(file,label)}catch(x){info.textContent='⚠ '+x.message}sel.value=''};
+ setTimeout(fill,300);window.addEventListener('botsurts',fill);
+}
 /* busca Surtido_optimizado.xlsx en la carpeta de ⚙ y lo carga en una zona */
 async function autoSurtido(el,loadFn){
  if(!window.BOT||!BOT.savedSurt)return;let r;try{r=await BOT.savedSurt(false)}catch(x){return}
@@ -548,7 +560,7 @@ ZONES.forEach((z,i)=>{
  d.ondragleave=()=>d.classList.remove('over');
  d.ondrop=e=>{e.preventDefault();d.classList.remove('over');e.dataTransfer.files[0]&&load(z,e.dataTransfer.files[0],d)};
  zEl.appendChild(d);
- if(z.k==='sur')setTimeout(()=>autoSurtido(d,f=>load(z,f,d,true)),300);
+ if(z.k==='sur')surtPicker(d,(f,label)=>load(z,f,d,label));
 });
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
 const eanKey=v=>{let s=String(v??'').trim().replace(/\.0+$/,'');return s.replace(/^0+/,'')};
@@ -575,7 +587,7 @@ function load(z,file,el,saved){
   else{data[z.k]=rows;el.classList.add('ok');
    let info='';if(z.k==='sur'){const dt=(rows.find(r=>r['fecha de precio']!==''&&r['fecha de precio']!=null)||{})['fecha de precio']||'';const sc=[...new Set(rows.map(r=>String(r['seccion']??'').trim()).filter(Boolean))].sort();
     info=(dt?'<br>Fecha '+dt:'')+(sc.length?'<br>Secciones: '+sc.join(', '):'')}
-   el.querySelector('.fn').innerHTML=(saved?'✔ Surtido guardado (carpeta de fotos)':'✔ '+file.name)+' · '+rows.length+' filas'+info;prog(100,'Completado 100%');done()}
+   el.querySelector('.fn').innerHTML=(saved?'✔ '+saved:'✔ '+file.name)+' · '+rows.length+' filas'+info;prog(100,'Completado 100%');done()}
   canGo();el.classList.remove('loading');
  };
  el.classList.remove('ok');el.classList.add('loading');delete data[z.k];canGo();
@@ -822,10 +834,11 @@ const prog=(p,t)=>{pb.style.display='block';pt.style.display='block';pb.classLis
 const hideP=()=>{pb.style.display='none';pt.style.display='none'};
 z.onclick=()=>inp.click();inp.onclick=e=>e.stopPropagation();
 inp.onchange=()=>{inp.files[0]&&loadFile(inp.files[0]);inp.value=''};
+surtPicker(z,(f,label)=>loadFile(f,label));
 z.ondragover=e=>{e.preventDefault();z.classList.add('over')};z.ondragleave=()=>z.classList.remove('over');
 z.ondrop=e=>{e.preventDefault();z.classList.remove('over');e.dataTransfer.files[0]&&loadFile(e.dataTransfer.files[0])};
-async function loadFile(file){
- if(!/report_surt/i.test(file.name)){z.querySelector('.fn').textContent='⚠ Archivo no válido: el nombre debe contener "REPORT_SURT"';return}
+async function loadFile(file,saved){
+ if(!saved&&!/report_surt/i.test(file.name)){z.querySelector('.fn').textContent='⚠ Archivo no válido: el nombre debe contener "REPORT_SURT"';return}
  if(/\.xls$/i.test(file.name))file=new File([file],file.name.replace(/\.xls$/i,'.xlsx'),{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
  z.classList.add('loading');z.querySelector('.fn').textContent=file.name+' · '+(file.size/1048576).toFixed(1)+' MB';
  prog(0,'Leyendo archivo… 0%');
@@ -834,16 +847,17 @@ async function loadFile(file){
    r.onprogress=e=>{if(e.lengthComputable)prog(Math.round(e.loaded/e.total*40),'Leyendo archivo… '+Math.round(e.loaded/e.total*100)+'%')};
    r.onload=()=>res(r.result);r.onerror=()=>rej(new Error('No se pudo leer el archivo'));r.readAsArrayBuffer(file)});
   prog(40,'Procesando Excel…');
-  const foto=await surtDir();
+  const foto=saved?null:await surtDir();
   const d=await runWorker(buf,!!foto,prog);
   index=buildIndex(d.aoa);
   saveMeta();
   let extra='<br>✔ Surtido guardado en este navegador';
   if(foto&&d.copy){try{const w=await (await foto.getFileHandle(COPY,{create:true})).createWritable();await w.write(d.copy);await w.close();
     extra='<br>✔ Copia guardada en la carpeta <b>'+foto.name+'</b> ('+COPY+', '+(d.copy.byteLength/1048576).toFixed(1)+' MB)'}catch(x){extra+='<br>⚠ No se pudo guardar en la carpeta: '+x.message}}
+  else if(saved)extra='<br>✔ Surtido guardado: <b>'+esc(saved)+'</b>';
   else if(!foto)extra+='<br>Elige la carpeta del Botiquín en ⚙ para guardar también una copia en Surtidos';
   prog(100,'Completado 100%');setTimeout(hideP,700);
-  z.querySelector('.fn').textContent='✔ '+file.name;
+  z.querySelector('.fn').textContent='✔ '+(saved||file.name);
   surInfo(index,extra);
  }catch(x){hideP();z.querySelector('.fn').textContent='⚠ '+x.message}
  z.classList.remove('loading');$('bgo').disabled=!index;
@@ -1011,7 +1025,7 @@ async function doSurt(file,target){
   const name=fileFor(zi.g,zi.c,zi.n);
   const w=await (await dir.getFileHandle(name,{create:true})).createWritable();await w.write(d.copy);await w.close();
   const m=(await kv('surts').catch(()=>null))||{};m[target]={date,n:d.aoa.length-1,file:name,t:Date.now()};await kv('surts',m);
-  renderSurt();msgAll('✔ '+esc(file.name)+' guardado como <b>Surtidos/'+name+'</b>'+(date?' · '+date:''));
+  renderSurt();window.dispatchEvent(new Event('botsurts'));msgAll('✔ '+esc(file.name)+' guardado como <b>Surtidos/'+name+'</b>'+(date?' · '+date:''));
  }catch(x){if(el){el.classList.add('err');el.querySelector('.bar2').style.display='none';el.querySelector('.st').textContent='⚠ '+x.message}msgAll('⚠ '+esc(file.name)+': '+x.message)}
 }
 {const z=$('sall'),inp=z.querySelector('input');z.onclick=()=>inp.click();inp.onclick=e=>e.stopPropagation();
@@ -1019,7 +1033,13 @@ async function doSurt(file,target){
  z.ondragover=e=>{e.preventDefault();z.classList.add('over')};z.ondragleave=()=>z.classList.remove('over');
  z.ondrop=e=>{e.preventDefault();z.classList.remove('over');[...e.dataTransfer.files].forEach(f=>loadSurt(f,null))}}
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-window.BOT={savedSurt,surtDir,photosFor,photoCache,photoURL,ean13svg,id10:id=>id?String(id).slice(-10).padStart(10,'0'):''};
+const listSurts=async()=>{const m=(await kv('surts').catch(()=>null))||{};const L=[];
+ for(const g of SURT)for(const [c,n] of g.s){const z=m[zid(g,c)];if(z)L.push({file:z.file,label:c==='*'?g.n+' (sector completo)':c+' · '+n,date:z.date,n:z.n})}
+ try{const o=JSON.parse(localStorage.getItem('bot_sur')||'null');if(o)L.push({file:COPY,label:'Último cargado en Buscador v2',date:o.date,n:o.n})}catch(x){}
+ return L};
+const getSurt=async f=>{const d=await surtDir(true);if(!d)throw new Error('elige la carpeta del Botiquín en ⚙ (o da permiso)');
+ try{return await (await d.getFileHandle(f)).getFile()}catch(x){throw new Error('no encuentro '+f+' en Surtidos')}};
+window.BOT={listSurts,getSurt,savedSurt,surtDir,photosFor,photoCache,photoURL,ean13svg,id10:id=>id?String(id).slice(-10).padStart(10,'0'):''};
 $('bprint').onclick=()=>printRep(false);
 $('bprinti').onclick=()=>printRep(true);
 })();
@@ -1072,7 +1092,7 @@ for(const k in ZS){const z=ZS[k],el=z.el,inp=el.querySelector('input'),pb=el.que
     D.sur=m}
    prog(100,'Completado 100%');setTimeout(hide,700);el.classList.add('ok');
    const sm=k==='sur'?surSummary(aoa):'';
-   el.querySelector('.fn').innerHTML=(saved?'✔ Surtido guardado (carpeta de fotos)':'✔ '+esc(file.name))+' · '+(aoa.length-1)+' filas'+(sm?'<br>'+sm.replace(' · Secciones','<br>Secciones'):'');
+   el.querySelector('.fn').innerHTML=(saved?'✔ '+esc(saved):'✔ '+esc(file.name))+' · '+(aoa.length-1)+' filas'+(sm?'<br>'+sm.replace(' · Secciones','<br>Secciones'):'');
   }catch(x){hide();el.querySelector('.fn').textContent='⚠ '+x.message}
   el.classList.remove('loading');canGo();
  };
@@ -1083,11 +1103,11 @@ for(const k in ZS){const z=ZS[k],el=z.el,inp=el.querySelector('input'),pb=el.que
  el.ondrop=e=>{e.preventDefault();el.classList.remove('over');e.dataTransfer.files[0]&&load(e.dataTransfer.files[0])};
 }
 // primero: surtido optimizado de la carpeta de fotos
-setTimeout(()=>autoSurtido(ZS.sur.el,f=>ZS.sur.load(f,true)),300);
+surtPicker(ZS.sur.el,(f,label)=>ZS.sur.load(f,label));
 // si no, el que tenga guardado Buscador v2 en el navegador
 (()=>{try{const r=indexedDB.open('botiquin',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');
  r.onsuccess=()=>{try{const q=r.result.transaction('kv').objectStore('kv').get('index');q.onsuccess=()=>{const v=q.result;
-  if(v&&v.ix){surSaved=v.ix;if(!D.sur&&!ZS.sur.el.classList.contains('loading')&&!/Hay un surtido guardado/.test(ZS.sur.el.querySelector('.fn').textContent)){ZS.sur.el.classList.add('ok');ZS.sur.el.querySelector('.fn').textContent='✔ Usando el surtido guardado del '+v.date+' (puedes cargar otro)'}canGo()}}}catch(x){}}}catch(x){}})();
+  if(v&&v.ix){surSaved=v.ix;if(!D.sur&&!ZS.sur.el.classList.contains('loading')){ZS.sur.el.classList.add('ok');ZS.sur.el.querySelector('.fn').textContent='✔ Usando el surtido guardado del '+v.date+' (puedes cargar otro)'}canGo()}}}catch(x){}}}catch(x){}})();
 
 const opt=(sel,vals,keep)=>{const cur=keep?sel.value:'';sel.innerHTML='<option value="">Todos</option>'+vals.map(v=>`<option${v===cur?' selected':''}>${v}</option>`).join('')};
 const uniqS=a=>[...new Set(a.filter(Boolean))].sort((x,y)=>x.localeCompare(y,'es'));
