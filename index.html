@@ -31,6 +31,7 @@ body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);c
 .sz b{display:block;font-size:12.5px;color:var(--ink)}.sz .st{color:var(--mut);font-size:11px;margin-top:2px;min-height:14px}.sz.ok .st{color:#15803d}
 .sz .bar2{height:4px;background:#e3e8f3;border-radius:3px;overflow:hidden;margin-top:4px;display:none}.sz .bar2 i{display:block;height:100%;width:0;background:var(--pri)}
 .spick{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:10px}.spick select{max-width:100%;padding:7px 10px;border:1px solid var(--bd);border-radius:8px;font-size:13px;background:#fff;cursor:pointer}
+.basew{display:flex;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap;background:#fff7ed;border:1.5px solid #fdba74;color:#7c2d12;border-radius:14px;padding:14px 18px;margin-bottom:20px}.basew.hidden{display:none}.basew b{display:block;font-size:15px}.basew span{font-size:13px}
 .tile{position:relative}.tile .ver .pop{display:none;position:absolute;top:24px;right:0;width:250px;background:#1d2433;color:#fff;text-align:left;font-weight:400;font-size:12px;border-radius:10px;padding:10px 12px;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:5;cursor:default}
 .tile .ver .pop b{display:block;margin-bottom:6px}.tile .ver .pop i{display:block;font-style:normal;padding:2px 0 2px 12px;position:relative}.tile .ver .pop i:before{content:'•';position:absolute;left:0}
 .tile .ver:hover .pop{display:block}
@@ -266,6 +267,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
  </div>
 </div></div>
 <section id="menu">
+ <div id="basew" class="basew hidden"><div><b id="basewt">⚠ Falta seleccionar la carpeta del Botiquín</b><span id="basews">Elígela antes de empezar: ahí se guardan los surtidos y las fotos (T:\!RafaBazar\Botiquín Carrefour).</span></div><button class="btn" id="basewb">📁 Seleccionar carpeta</button></div>
  <div class="grid">
   <div class="tile" data-go="dif"><span class="ver">v1.6<span class="pop"><b>Novedades v1.6</b><i>Desplegable para elegir un surtido guardado en ⚙</i><i>Carga solo el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Solo es obligatorio el documento 1</i><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
   <div class="tile" data-go="bus"><span class="ver">v3.3<span class="pop"><b>Novedades v3.3</b><i>La copia del surtido se guarda con el nombre de su sección (p. ej. Surtido_30_Bricolaje)</i><i>Botón para ordenar en cada columna</i><i>Desplegable para elegir un surtido guardado en ⚙; fotos en Botiquín/Foto</i><i>El surtido se guarda también en la carpeta de ⚙ y se recupera desde ahí</i><i>Imágenes más grandes en las tarjetas</i><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
@@ -1121,6 +1123,16 @@ const listSurts=async()=>{const m=(await kv('surts').catch(()=>null))||{};const 
  return L};
 const getSurt=async f=>{const d=await surtDir(true);if(!d)throw new Error('elige la carpeta del Botiquín en ⚙ (o da permiso)');
  try{return await (await d.getFileHandle(f)).getFile()}catch(x){throw new Error('no encuentro '+f+' en Surtidos')}};
+/* aviso en el inicio si falta la carpeta del Botiquín o su permiso */
+async function baseCheck(){const w=$('basew');if(!fsOK){w.classList.add('hidden');return}
+ let h=null;try{h=await kv('basedir')}catch(x){}
+ if(!h){$('basewt').textContent='⚠ Falta seleccionar la carpeta del Botiquín';$('basews').textContent='Elígela antes de empezar: ahí se guardan los surtidos y las fotos (T:\\!RafaBazar\\Botiquín Carrefour).';$('basewb').textContent='📁 Seleccionar carpeta';w.dataset.m='pick';w.classList.remove('hidden');return}
+ let p='prompt';try{p=await h.queryPermission({mode:'readwrite'})}catch(x){}
+ if(p==='granted'){w.classList.add('hidden');return}
+ $('basewt').textContent='⚠ Falta dar permiso a la carpeta «'+h.name+'»';$('basews').textContent='Chrome necesita tu permiso para usar los surtidos y las fotos guardados.';$('basewb').textContent='🔓 Dar permiso';w.dataset.m='perm';w.classList.remove('hidden')}
+$('basewb').onclick=async()=>{if($('basew').dataset.m==='perm'){try{const h=await kv('basedir');await h.requestPermission({mode:'readwrite'})}catch(x){}baseCheck();rescanSurt()}else{$('cfgpick').click()}};
+const _pick=$('cfgpick').onclick;$('cfgpick').onclick=async e=>{await _pick(e);baseCheck()};
+setTimeout(baseCheck,200);
 window.BOT={listSurts,getSurt,savedSurt,surtDir,photosFor,photoCache,photoURL,ean13svg,id10:id=>id?String(id).slice(-10).padStart(10,'0'):''};
 $('bprint').onclick=()=>printRep(false);
 $('bprinti').onclick=()=>printRep(true);
