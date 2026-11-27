@@ -102,6 +102,19 @@ td.nou{color:#b45309;font-style:italic}
 tr.nf td{color:var(--mut);background:#fff7f7}
 .bimg{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:6px}
 #printArea{display:none}
+.bplist{display:flex;gap:8px;flex-wrap:wrap}.bpi{position:relative;border:1.5px solid var(--bd);background:#fff;border-radius:10px;padding:7px 26px 7px 12px;text-align:left;cursor:pointer;font-size:12px}
+.bpi b{display:block;font-size:13px}.bpi span{color:var(--mut)}.bpi.on{border-color:var(--pri);background:#eef3ff}.bpi i{position:absolute;top:4px;right:6px;font-style:normal;color:#b91c1c;font-size:12px}
+.bsecs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-top:12px}
+.bsr{display:flex;align-items:center;gap:8px;border:1px solid var(--bd);border-radius:10px;padding:8px 10px;font-size:13px}.bsr span{flex:1;font-weight:600}
+.bsr input{width:70px;padding:7px;border:1px solid var(--bd);border-radius:8px;font-size:16px;text-align:center}.bsr em{font-style:normal;color:var(--mut);font-size:12px}
+#printArea .baliza{break-after:page;border:3px solid #000;font-family:Arial,Helvetica,sans-serif;background:#f4f1d0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;height:270mm;display:flex;flex-direction:column}
+#printArea .baliza:last-child{break-after:auto}
+#printArea .baliza>div{border-bottom:2.5px solid #000;display:flex;align-items:center;padding:0 6mm}
+#printArea .bz1{font-size:30px;font-weight:900;height:22mm}#printArea .bz2{font-size:28px;font-weight:900;height:18mm}
+#printArea .bz3{height:32mm;font-size:64px;font-weight:900}#printArea .bz3 span{flex:1;text-align:center}#printArea .bz3 b{width:55mm;text-align:center;border-left:2px solid #000;align-self:stretch;display:flex;align-items:center;justify-content:center}
+#printArea .bz4{height:24mm;font-size:30px;font-weight:900}#printArea .bz4 span:first-child{width:60mm}#printArea .bz4 b{flex:1;text-align:center;font-size:40px}#printArea .bz4 span:last-child{width:50mm;text-align:center}
+#printArea .bz5{flex:1;font-size:20px;font-weight:800}#printArea .bz5 span{flex:1}#printArea .bz5 b{width:40mm;text-align:center;font-size:30px;border-left:1.5px solid #000;border-right:1.5px solid #000;align-self:stretch;display:flex;align-items:center;justify-content:center}#printArea .bz5 em{width:30mm;text-align:center;font-style:normal}
+#printArea .bz6{height:28mm;font-size:52px;font-weight:900;justify-content:center;border-bottom:0!important}
 .sth{display:inline-flex;align-items:center;gap:6px}.sbt{border:1px solid var(--bd);background:#fff;border-radius:6px;font-size:11px;line-height:1;padding:3px 5px;cursor:pointer;color:var(--mut)}.sbt.on{background:var(--pri);color:#fff;border-color:var(--pri)}
 .msel{position:relative}.msb{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;background:#fff;font-size:13px;min-width:170px;text-align:left;cursor:pointer;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .msp{position:absolute;z-index:20;top:100%;left:0;margin-top:4px;background:#fff;border:1px solid var(--bd);border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.15);max-height:320px;overflow:auto;min-width:240px;padding:6px 0;color:var(--ink)}
@@ -195,6 +208,7 @@ tr.nf td{color:var(--mut);background:#fff7f7}
 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 10v7M8.5 13.5h7"/></svg>
 <div><h1 id="htitle">Botiquín Todo en Uno Carrefour</h1><span id="hsub">Herramientas de tienda</span></div>
 <button id="cfg" class="hbtn" title="Configuración" style="margin-left:auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+<button class="btn" id="obal" style="margin-left:auto;display:none;background:#fff;color:#1e40af">🏷 Balizas Palets</button>
 <button class="btn" id="reload" style="margin-left:10px;display:none;background:#fff;color:#1e40af">📂 Cargar documentos</button>
 </header>
 <div id="cfgm" class="modal hidden"><div class="mbox mwide">
@@ -211,11 +225,34 @@ tr.nf td{color:var(--mut);background:#fff7f7}
  <p class="info">Configurado de serie: el móvil y el ordenador comparten los reportes sin hacer nada.</p>
  <div style="text-align:right;margin-top:14px"><button class="btn sec" id="cfgclose">Cerrar</button></div>
 </div></div>
+<div id="balm" class="modal hidden"><div class="mbox mwide">
+ <h3>🏷 Balizas Palets</h3>
+ <div class="filters" style="margin:0 0 10px">
+  <div class="f">Origen<input value="00T6 - VIGO 1" disabled style="min-width:160px;font-weight:700"></div>
+  <div class="f">Destino<select id="bdest"><option>Outlet Rosales</option><option>Outlet Alfonso Molina</option></select></div>
+  <span class="msg" id="bcntp"></span>
+  <button class="btn sec" id="bnew">🗑 Nuevo envío</button>
+ </div>
+ <div id="bplist" class="bplist"></div>
+ <div class="card" style="margin-top:10px">
+  <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+   <b id="bptit" style="font-size:18px">Palet 1</b>
+   <div class="f">Sector<select id="bsect"><option value="pgc">PGC</option><option value="baz">BAZAR</option><option value="ele">ELECTRO</option><option value="tex">TEXTIL</option></select></div>
+   <span class="msg" id="bptot"></span>
+  </div>
+  <div id="bsecs" class="bsecs"></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;justify-content:flex-end">
+   <button class="btn sec" id="bclose">Cerrar</button>
+   <button class="btn sec" id="badd">➕ Guardar y añadir nuevo palet</button>
+   <button class="btn" id="bpdf">🖨 Guardar y generar reporte PDF</button>
+  </div>
+ </div>
+</div></div>
 <section id="menu">
  <div class="grid">
   <div class="tile" data-go="dif"><span class="ver">v1.6<span class="pop"><b>Novedades v1.6</b><i>Desplegable para elegir un surtido guardado en ⚙</i><i>Carga solo el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Solo es obligatorio el documento 1</i><i>Lector rápido de Excel grandes</i><i>Barra de progreso al cargar</i><i>Control del nombre de cada archivo</i><i>Filtro de artículos contados a 0</i><i>PDF con columna Recuento</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div><b>Diferencias Inventario</b><small>Cruce de diferencias, surtido y capturas</small></div>
   <div class="tile" data-go="bus"><span class="ver">v3.3<span class="pop"><b>Novedades v3.3</b><i>La copia del surtido se guarda con el nombre de su sección (p. ej. Surtido_30_Bricolaje)</i><i>Botón para ordenar en cada columna</i><i>Desplegable para elegir un surtido guardado en ⚙; fotos en Botiquín/Foto</i><i>El surtido se guarda también en la carpeta de ⚙ y se recupera desde ahí</i><i>Imágenes más grandes en las tarjetas</i><i>Quitada la elección de carpeta del HTML (las fotos van a la carpeta de ⚙)</i><i>El surtido se guarda en el navegador, sin copia en Excel</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>Tarjetas con stock 0 en rojo</i><i>Designación visible en el PDF con imágenes</i><i>Surtido guardado: se puede buscar al abrir</i><i>Secciones del surtido en pantalla</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 9v4M11 9v4M13.5 9v4"/></svg></div><b>Buscador v2</b><small>Búsqueda de EAN en el surtido</small></div>
-  <div class="tile" data-go="out"><span class="ver">v2.2<span class="pop"><b>Novedades v2.2</b><i>Desplegable para elegir un surtido guardado en ⚙; fotos en Botiquín/Foto</i><i>Si un artículo no está en el surtido, el stock sale de UNIDADES_STOCK del listado</i><i>1ª página con 14 tarjetas: la cabecera ocupa el hueco de una fila</i><i>Carga sola el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
+  <div class="tile" data-go="out"><span class="ver">v2.3<span class="pop"><b>Novedades v2.3</b><i>Botón Balizas Palets: etiquetas de palet en PDF, una hoja por palet</i><i>Desplegable para elegir un surtido guardado en ⚙; fotos en Botiquín/Foto</i><i>Si un artículo no está en el surtido, el stock sale de UNIDADES_STOCK del listado</i><i>1ª página con 14 tarjetas: la cabecera ocupa el hueco de una fila</i><i>Carga sola el surtido guardado en la carpeta de fotos, con fecha y secciones</i><i>Se puede analizar solo con el listado (stock de UNIDADES_STOCK)</i><i>16 tarjetas por página desde la 2ª página</i><i>1ª página con 12 tarjetas y cabecera de preparación</i><i>Casillas Nº preparación / Nº pedido y Nº palets total</i><i>Carpeta de fotos configurable (⚙ en el inicio)</i><i>ID y sector/sección en dos líneas</i><i>Casillas Preparado y Controlado</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><b>Listado Outlet</b><small>Artículos outlet por centro con stock y ubicación</small></div>
   <div class="tile" data-go="map"><span class="ver">v2.9<span class="pop"><b>Novedades v2.9</b><i>Avisa si el script de Google no está actualizado para borrar</i><i>Reportes online configurados de serie en todos los dispositivos</i><i>Eliminar reportes del historial (también online)</i><i>Segundo método de conexión para ordenadores con cuenta de Google de empresa</i><i>Conexión con Google más compatible con iPhone (requiere actualizar el script)</i><i>Acepta direcciones de cuentas de empresa y explica el error</i><i>Si no hay conexión, el reporte se guarda y se sube después</i><i>Botón «Probar conexión» en ⚙</i><i>En el móvil la pantalla ya no se amplía al escribir</i><i>Pantalla más limpia para el móvil: todo en un paso</i><i>Generar reporte abajo; al pulsarlo se limpian los campos</i><i>Quitada la ubicación y la lectura del texto</i><i>Generar reporte vacía la lista y lo guarda (online si está configurado)</i><i>Reportes en el ordenador: marcar Hecho e imprimir</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3"/></svg></div><b>Reporte Mapeo</b><small>Captura QR de ubicaciones y reporte para chequear</small></div>
   <div class="tile" data-go="cmp"><span class="ver">v1.4<span class="pop"><b>Novedades v1.4</b><i>Imagen centrada entre la designación y el stock</i><i>Imágenes más grandes en el reporte</i><i>Botón para ordenar en cada columna</i><i>Columnas «Stock Tienda 1» y «Stock Tienda 2»</i><i>Filtro múltiple por surtido</i><i>Compara dos surtidos (.xls o .xlsx)</i><i>Filtros múltiples por sección y familia</i><i>Reportes con imágenes y códigos de barras de lo que tiene una tienda y no la otra</i></span></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 9h4M12 7l2 2-2 2M14 15h-4M12 13l-2 2 2 2"/></svg></div><b>Compara Surtido</b><small>Diferencias de surtido entre dos tiendas</small></div>
  </div>
@@ -392,6 +429,7 @@ const show=v=>{
  document.getElementById('cfg').style.display=v==='menu'?'flex':'none';
  document.getElementById('htitle').textContent=TT[v][0];document.getElementById('hsub').textContent=TT[v][1];
  document.getElementById('reload').style.visibility=v==='dif'?'visible':'hidden';
+ document.getElementById('obal').style.display=v==='out'?'inline-block':'none';
  document.title=v==='menu'?TT.menu[0]:TT[v][0]+' · Botiquín';
  window.scrollTo(0,0);
 };
@@ -1468,6 +1506,52 @@ async function rep(k){const other=k===1?2:1;const v=base().filter(r=>has(r,k)&&!
  await Promise.race([Promise.all(imgs.map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r}))),new Promise(r=>setTimeout(r,10000))]);
  window.print()}
 $('crep1').onclick=()=>rep(1);$('crep2').onclick=()=>rep(2);
+})();
+</script>
+<script>
+/* ===================== BALIZAS PALETS (Listado Outlet) ===================== */
+(()=>{
+const $=id=>document.getElementById(id);
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SEC={pgc:{n:'PGC',num:1,s:[['10','Líquidos'],['11','DPH'],['13','Parafarmacia'],['14','Alimentación Seca'],['15','PLS']]},
+ baz:{n:'BAZAR',num:3,s:[['30','Bricolaje'],['31','Casa Hogar'],['32','Cultura'],['33','Deportes/Juguetes'],['34','Jardín'],['35','Automóvil']]},
+ ele:{n:'ELECTRO',num:4,s:[['40','Gran Aparato'],['41','PAE'],['42','Fotografía'],['43','Sonido'],['44','Imagen'],['45','Ofimática']]},
+ tex:{n:'TEXTIL',num:6,s:[['60','Zapatos'],['61','Bebé/Puericultura'],['62','Niño'],['63','Mujer'],['64','Hombre'],['65','Hogar'],['67','Permanente']]}};
+let P=[],cur=0;try{const o=JSON.parse(localStorage.getItem('bot_bal')||'null');if(o){P=o.P||[];$('bdest').value=o.dest||'Outlet Rosales'}}catch(x){}
+const save=()=>{try{localStorage.setItem('bot_bal',JSON.stringify({P,dest:$('bdest').value}))}catch(x){}};
+$('bdest').onchange=save;
+const blank=()=>({sector:$('bsect').value||'pgc',cajas:{}});
+if(!P.length)P=[{sector:'pgc',cajas:{}}];cur=P.length-1;
+function readForm(){const p=P[cur];p.sector=$('bsect').value;p.cajas={};
+ $('bsecs').querySelectorAll('input').forEach(i=>{const v=parseInt(i.value,10);if(v>0)p.cajas[i.dataset.c]=v})}
+const tot=p=>Object.values(p.cajas).reduce((a,b)=>a+b,0);
+function renderForm(){const p=P[cur];$('bsect').value=p.sector;$('bptit').textContent='Palet '+(cur+1);
+ $('bsecs').innerHTML=SEC[p.sector].s.map(([c,n])=>`<label class="bsr"><span>${c} · ${n}</span><input type="number" min="0" inputmode="numeric" data-c="${c}" value="${p.cajas[c]||''}" placeholder="0"><em>cajas</em></label>`).join('');
+ $('bsecs').querySelectorAll('input').forEach(i=>i.oninput=()=>{readForm();$('bptot').textContent='Total: '+tot(P[cur])+' cajas';renderList();save()});
+ $('bptot').textContent='Total: '+tot(p)+' cajas';renderList()}
+function renderList(){
+ $('bplist').innerHTML=P.map((p,i)=>`<button class="bpi${i===cur?' on':''}" data-i="${i}"><b>Palet ${i+1}</b><span>${SEC[p.sector].n} · ${tot(p)} cajas</span>${P.length>1?`<i data-d="${i}" title="Quitar">✕</i>`:''}</button>`).join('');
+ $('bplist').querySelectorAll('.bpi').forEach(b=>b.onclick=e=>{if(e.target.dataset.d!=null){P.splice(+e.target.dataset.d,1);cur=Math.min(cur,P.length-1);save();renderForm();return}cur=+b.dataset.i;renderForm()});
+ $('bcntp').textContent=P.length+' palet(s) · '+P.reduce((a,p)=>a+tot(p),0)+' cajas en total'}
+$('bsect').onchange=()=>{P[cur].sector=$('bsect').value;P[cur].cajas={};save();renderForm()};
+$('badd').onclick=()=>{readForm();if(!tot(P[cur])){$('bptot').innerHTML='<span style="color:var(--red)">⚠ Introduce las cajas de alguna sección</span>';return}
+ P.push({sector:P[cur].sector,cajas:{}});cur=P.length-1;save();renderForm();$('bsecs').querySelector('input')?.focus()};
+$('bnew').onclick=()=>{if($('bnew').dataset.c){P=[{sector:'pgc',cajas:{}}];cur=0;save();renderForm();delete $('bnew').dataset.c;$('bnew').textContent='🗑 Nuevo envío'}
+ else{$('bnew').dataset.c=1;$('bnew').textContent='¿Borrar todos los palets?';setTimeout(()=>{delete $('bnew').dataset.c;$('bnew').textContent='🗑 Nuevo envío'},3000)}};
+$('bclose').onclick=()=>$('balm').classList.add('hidden');
+$('balm').onclick=e=>{if(e.target.id==='balm')$('balm').classList.add('hidden')};
+$('obal').onclick=()=>{$('balm').classList.remove('hidden');renderForm()};
+$('bpdf').onclick=()=>{readForm();const L=P.filter(p=>tot(p)>0);if(!L.length){$('bptot').innerHTML='<span style="color:var(--red)">⚠ No hay palets con cajas</span>';return}save();
+ const dest=$('bdest').value;
+ $('pgsz').textContent='@media print{@page{size:A4 portrait;margin:10mm}}';
+ $('printArea').innerHTML=L.map((p,i)=>{const S=SEC[p.sector];
+  return `<div class="baliza"><div class="bz1">Origen:&nbsp;&nbsp; 00T6 &nbsp;-&nbsp; VIGO 1</div><div class="bz2">Destino: ${esc(dest)}</div>
+   <div class="bz3"><span>PALET Nº:</span><b>${i+1}</b></div>
+   <div class="bz4"><span>TOTAL:</span><b>${tot(p)}</b><span>CAJAS</span></div>
+   ${S.s.map(([c,n])=>`<div class="bz5"><span>Sección ${c} · ${esc(n)}</span><b>${p.cajas[c]||''}</b><em>Cajas</em></div>`).join('')}
+   <div class="bz6">Sector&nbsp;&nbsp; ${S.num} &nbsp;-&nbsp; ${S.n}</div></div>`}).join('');
+ window.print()};
+renderList();
 })();
 </script>
 </body>
